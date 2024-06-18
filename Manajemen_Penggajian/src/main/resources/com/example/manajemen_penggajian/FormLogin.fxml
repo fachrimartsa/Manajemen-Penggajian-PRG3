@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="mainPanel" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.manajemen_penggajian.FormLogin">
+   <children>
+      <ImageView fx:id="templateLogin" fitHeight="865.0" fitWidth="1580.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../../image/Login.png" />
+         </image>
+      </ImageView>
+      <Pane fx:id="panelLogin" layoutX="935.0" layoutY="162.0" opacity="0.77" prefHeight="571.0" prefWidth="427.0" style="-fx-background-color: #365486; -fx-background-radius: 20; -fx-border-color: #0986D5; -fx-border-radius: 20;" stylesheets="@Style.css" AnchorPane.bottomAnchor="133.0" AnchorPane.rightAnchor="218.0">
+         <children>
+            <TextField fx:id="tbUsername" layoutX="66.0" layoutY="144.0" prefHeight="43.0" prefWidth="300.0" promptText="Username" style="-fx-background-radius: 15; -fx-background-color: #365486; -fx-border-color: #FFFFFF; -fx-border-radius: 15;" styleClass="text-field" stylesheets="@Style.css">
+               <font>
+                  <Font size="24.0" />
+               </font></TextField>
+            <TextField fx:id="tbPassword" layoutX="66.0" layoutY="217.0" prefHeight="43.0" prefWidth="300.0" promptText="Password" style="-fx-background-radius: 15; -fx-background-color: #365486; -fx-border-color: #FFFFFF; -fx-border-radius: 15;" styleClass="text-field">
+               <font>
+                  <Font size="24.0" />
+               </font></TextField>
+            <Button fx:id="btnLogin" layoutX="63.0" layoutY="474.0" mnemonicParsing="false" onAction="#onbtnLoginClick" prefHeight="46.0" prefWidth="300.0" style="-fx-background-color: #0F1035; -fx-background-radius: 15;" text="L O G I N" textFill="WHITE">
+               <font>
+                  <Font name="Stencil" size="24.0" />
+               </font></Button>
+            <TextField fx:id="tbCaptcha" editable="false" layoutX="241.0" layoutY="313.0" prefHeight="43.0" prefWidth="120.0">
+               <font>
+                  <Font size="18.0" />
+               </font></TextField>
+            <TextField fx:id="tbKodeCaptcha" layoutX="241.0" layoutY="384.0" prefHeight="43.0" prefWidth="120.0" style="-fx-background-color: #365486; -fx-border-color: #FFFFFF; -fx-background-radius: 15; -fx-border-radius: 15;" styleClass="text-field">
+               <font>
+                  <Font size="24.0" />
+               </font></TextField>
+            <Pane layoutX="61.0" layoutY="98.0" prefHeight="3.0" prefWidth="300.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 20;" />
+            <Label layoutX="110.0" layoutY="29.0" prefHeight="67.0" prefWidth="207.0" text="Sign In">
+               <font>
+                  <Font name="Stencil" size="55.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="0.6893940549908262" endY="1.0" startX="0.6704544885592028" startY="0.34848480513601593">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.49803921580314636" green="0.7803921699523926" blue="0.8509804010391235" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.09017496635262448">
+                           <color>
+                              <Color red="0.5274853706359863" green="0.6640740633010864" blue="0.6947368383407593" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.21591110527525195">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Label>
+            <CheckBox layoutX="91.0" layoutY="277.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="113.0" text="Show Password" textFill="WHITE" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
