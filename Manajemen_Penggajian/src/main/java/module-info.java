@@ -3,6 +3,7 @@ module com.example.manajemen_penggajian {
     requires javafx.fxml;
 
     requires com.dlsc.formsfx;
+    requires java.sql;
 
     opens com.example.manajemen_penggajian to javafx.fxml;
     exports com.example.manajemen_penggajian;
