@@ -51,7 +51,7 @@ public class CRUDTunjangan {
 
     @FXML
     public void btnSaveClick() {
-        String id, nama, status;
+        /*String id, nama, status;
         id = tbID.getText();
         nama = tbNama.getText();
         status = tbStatus.getText();
@@ -85,6 +85,6 @@ public class CRUDTunjangan {
             ex.printStackTrace();
             alert.setContentText("Terjadi error saat load obat : " +ex);
             alert.show();
-        }
+        }*/
     }
 }
