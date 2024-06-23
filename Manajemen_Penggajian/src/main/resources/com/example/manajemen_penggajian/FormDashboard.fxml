@@ -57,42 +57,42 @@
       </Button>
       <VBox fx:id="dropdownBox" layoutX="67.0" layoutY="262.0" managed="false" prefHeight="73.0" prefWidth="160.0" visible="false">
          <children>
-            <Button mnemonicParsing="false" prefHeight="28.0" prefWidth="123.0" style="-fx-background-color: #CEDEF8;" text="Karyawan" textFill="#312e5f">
+            <Button fx:id="btnKaryawan" mnemonicParsing="false" prefHeight="28.0" prefWidth="123.0" style="-fx-background-color: #CEDEF8;" text="Karyawan" textFill="#312e5f">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnTunjanganClick" prefHeight="28.0" prefWidth="123.0" style="-fx-background-color: #CEDEF8;" text="Tunjangan" textFill="#312e5f">
+            <Button fx:id="btnTunjangan" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnTunjanganClick" prefHeight="28.0" prefWidth="123.0" style="-fx-background-color: #CEDEF8;" text="Tunjangan" textFill="#312e5f">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button layoutX="10.0" layoutY="41.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="123.0" style="-fx-background-color: #CEDEF8;" text="Asuransi" textFill="#312e5f">
+            <Button fx:id="btnAsuransi" layoutX="10.0" layoutY="41.0" mnemonicParsing="false" onAction="#btnAsuransiClick" prefHeight="28.0" prefWidth="123.0" style="-fx-background-color: #CEDEF8;" text="Asuransi" textFill="#312e5f">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button layoutX="10.0" layoutY="72.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="123.0" style="-fx-background-color: #CEDEF8;" text="Pajak" textFill="#312e5f">
+            <Button fx:id="btnPajak" layoutX="10.0" layoutY="72.0" mnemonicParsing="false" onAction="#btnPajakClick" prefHeight="28.0" prefWidth="123.0" style="-fx-background-color: #CEDEF8;" text="Pajak" textFill="#312e5f">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button layoutX="10.0" layoutY="104.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="123.0" style="-fx-background-color: #CEDEF8;" text="Golongan" textFill="#312e5f">
+            <Button fx:id="btnGolongan" layoutX="10.0" layoutY="104.0" mnemonicParsing="false" onAction="#btnGolonganClick" prefHeight="28.0" prefWidth="123.0" style="-fx-background-color: #CEDEF8;" text="Golongan" textFill="#312e5f">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button layoutX="10.0" layoutY="135.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="123.0" style="-fx-background-color: #CEDEF8;" text="Divisi" textFill="#312e5f">
+            <Button fx:id="btnDivisi" layoutX="10.0" layoutY="135.0" mnemonicParsing="false" onAction="#btnDivisiClick" prefHeight="28.0" prefWidth="123.0" style="-fx-background-color: #CEDEF8;" text="Divisi" textFill="#312e5f">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button layoutX="10.0" layoutY="166.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="123.0" style="-fx-background-color: #CEDEF8;" text="Jabatan" textFill="#312e5f">
+            <Button fx:id="btnJabatan" layoutX="10.0" layoutY="166.0" mnemonicParsing="false" onAction="#btnJabatanClick" prefHeight="28.0" prefWidth="123.0" style="-fx-background-color: #CEDEF8;" text="Jabatan" textFill="#312e5f">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button layoutX="10.0" layoutY="197.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="123.0" style="-fx-background-color: #CEDEF8;" text="Shift" textFill="#312e5f">
+            <Button fx:id="btnShift" layoutX="10.0" layoutY="197.0" mnemonicParsing="false" onAction="#btnShiftClick" prefHeight="28.0" prefWidth="123.0" style="-fx-background-color: #CEDEF8;" text="Shift" textFill="#312e5f">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>

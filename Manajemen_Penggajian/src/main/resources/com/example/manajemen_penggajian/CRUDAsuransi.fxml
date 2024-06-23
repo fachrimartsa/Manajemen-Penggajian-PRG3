@@ -7,8 +7,6 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
@@ -57,11 +55,6 @@
                </font></TextField>
             <Pane layoutX="1035.0" layoutY="44.0" prefHeight="38.0" prefWidth="37.0">
                <children>
-                  <ImageView fitHeight="32.0" fitWidth="33.0" layoutX="3.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../image/MySearch.png" />
-                     </image>
-                  </ImageView>
                   <Button fx:id="btnSearch" layoutX="2.0" layoutY="-4.0" mnemonicParsing="false" opacity="0.0" prefHeight="32.0" prefWidth="34.0" />
                </children>
             </Pane>

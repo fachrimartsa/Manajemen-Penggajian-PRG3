@@ -1,13 +1,18 @@
 package com.example.manajemen_penggajian;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
-public class CRUDTunjangan {
+public class CRUDTunjangan implements Initializable {
     @FXML
     private Button btnCreate;
     @FXML
@@ -26,8 +31,82 @@ public class CRUDTunjangan {
     private Button btnSave;
     @FXML
     private Button btnCancel;
+    @FXML
+    private TableView<CRUDTunjangan> viewTunjangan;
+    @FXML
+    private TableColumn<CRUDTunjangan, String> cIDTunjangan;
+    @FXML
+    private TableColumn<CRUDTunjangan, String> cNamaTunjangan;
+    @FXML
+    private TableColumn<CRUDTunjangan, String> cStatusTunjangan;
 
     DBConnect connect = new DBConnect();
+
+    private String IDTunjangan;
+    private String nama;
+    private String status;
+
+    public CRUDTunjangan() {
+
+    }
+
+    public CRUDTunjangan(String IDTunjangan, String nama, String status) {
+        this.IDTunjangan = IDTunjangan;
+        this.nama = nama;
+        this.status = status;
+    }
+
+    @FXML
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        ObservableList<CRUDTunjangan> oblist = FXCollections.observableArrayList();
+        try {
+            connect.stat = connect.conn.createStatement();
+            String query = "SELECT * FROM Tunjangan";
+            connect.result = connect.stat.executeQuery(query);
+
+            while (connect.result.next()) {
+                oblist.add(new CRUDTunjangan(
+                        connect.result.getString("IDTunjangan"),
+                        connect.result.getString("nama"),
+                        connect.result.getString("status")));
+            }
+            connect.stat.close();
+            connect.result.close();
+        } catch (Exception exception) {
+            System.out.println("Error When Load Data: " + exception);
+        }
+
+        cIDTunjangan.setCellValueFactory(new PropertyValueFactory<>("IDTunjangan"));
+        cNamaTunjangan.setCellValueFactory(new PropertyValueFactory<>("nama"));
+        cStatusTunjangan.setCellValueFactory(new PropertyValueFactory<>("status"));
+
+        viewTunjangan.setItems(oblist);
+    }
+
+
+    public String getIDTunjangan() {
+        return IDTunjangan;
+    }
+
+    public void setIDTunjangan(String IDTunjangan) {
+        this.IDTunjangan = IDTunjangan;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     @FXML
     public void btnCreateClick() {
@@ -49,42 +128,181 @@ public class CRUDTunjangan {
         btnDelete.setDisable(false);
     }
 
-    @FXML
-    public void btnSaveClick() {
-        /*String id, nama, status;
-        id = tbID.getText();
-        nama = tbNama.getText();
-        status = tbStatus.getText();
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    public String generateID() {
+        String prefix = "TJN";
+        String query = "SELECT COUNT(*) FROM Tunjangan";
+        int count = 0;
+
+        connect.pstat = null;
+        connect.result = null;
 
         try {
-            String sql = "{CALL sp_updateObat(?, ?, ?, ?, ?, ?, ?, ?, ?)}";
+            connect.pstat = connect.conn.prepareStatement(query);
+            connect.result = connect.pstat.executeQuery();
+
+            if (connect.result.next()) {
+                count = connect.result.getInt(1);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            // Handle the exception appropriately (e.g., log it or rethrow it as a runtime exception)
+        } finally {
+            if (connect.result != null) {
+                try {
+                    connect.result.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            if (connect.pstat != null) {
+                try {
+                    connect.pstat.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+
+        count++; // Increment count by 1 to get the new ID
+        String newID = prefix + String.format("%03d", count);
+        return newID;
+    }
+
+    @FXML
+    public void btnSaveClick() {
+        setIDTunjangan(generateID());
+        setNama(tbNama.getText());
+        setStatus("Active");
+
+        if (tbNama.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Value Cannot Be Null");
+            alert.showAndWait();
+        } else {
+            try {
+                String sql = "{CALL sp_InsertTunjangan(?, ?, ?)}";
+                connect.pstat = connect.conn.prepareStatement(sql);
+                connect.pstat.setString(1, getIDTunjangan());
+                connect.pstat.setString(2, getNama());
+                connect.pstat.setString(3, getStatus());
+
+                int rowsUpdated = connect.pstat.executeUpdate();
+
+                if (rowsUpdated > 0) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Information");
+                    alert.setContentText("Save Data Successfully");
+                    alert.showAndWait();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setContentText("Failed to save data");
+                    alert.showAndWait();
+                }
+
+                connect.pstat.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("SQL Error: " + ex.getMessage());
+                alert.showAndWait();
+            }
+        }
+    }
+
+    @FXML
+    private void handleTableDoubleClick(MouseEvent event) {
+        if (event.getClickCount() == 2) {
+            CRUDTunjangan selectedTunjangan = viewTunjangan.getSelectionModel().getSelectedItem();
+            if (selectedTunjangan != null) {
+                tbID.setText(selectedTunjangan.getIDTunjangan());
+                tbNama.setText(selectedTunjangan.getNama());
+                tbStatus.setText(selectedTunjangan.getStatus());
+            }
+        }
+    }
+
+    @FXML
+    private void btnUpdateClick() {
+        setIDTunjangan(tbID.getText());
+        setNama(tbNama.getText());
+        setStatus(tbStatus.getText());
+        try {
+            String sql = "{CALL sp_UpdateTunjangan(?, ?, ?)}";
             connect.pstat = connect.conn.prepareStatement(sql);
-            connect.pstat.setString(1, kodeObat);
-            connect.pstat.setString(2, nama);
-            connect.pstat.setString(3, merk);
-            connect.pstat.setString(4, kemasan);
-            connect.pstat.setString(5, efek);
-            connect.pstat.setInt(6,hrgBeli);
-            connect.pstat.setInt(7,hrgJual);
-            connect.pstat.setString(8,kadaluarsa);
-            connect.pstat.setInt(9,stok);
+            connect.pstat.setString(1, getIDTunjangan());
+            connect.pstat.setString(2, getNama());
+            connect.pstat.setString(3, getStatus());
 
             int rowsUpdated = connect.pstat.executeUpdate();
 
             if (rowsUpdated > 0) {
-                alert.setContentText("Data Berhasil Di Update");
-                alert.show();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information");
+                alert.setContentText("Update Data Successfully");
+                alert.showAndWait();
             } else {
-                alert.setContentText("Data Tidak Ditemukan");
-                alert.show();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("Failed to save data");
+                alert.showAndWait();
             }
 
             connect.pstat.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
-            alert.setContentText("Terjadi error saat load obat : " +ex);
-            alert.show();
-        }*/
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("SQL Error: " + ex.getMessage());
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    private void btnDeleteClick() {
+        setIDTunjangan(tbID.getText());
+        try {
+            String sql = "{CALL sp_DeleteTunjangan(?, ?, ?)}";
+            connect.pstat = connect.conn.prepareStatement(sql);
+            connect.pstat.setString(1, getIDTunjangan());
+
+            int rowsUpdated = connect.pstat.executeUpdate();
+
+            if (rowsUpdated > 0) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information");
+                alert.setContentText("Delete Data Successfully");
+                alert.showAndWait();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("Failed to delete data");
+                alert.showAndWait();
+            }
+
+            connect.pstat.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("SQL Error: " + ex.getMessage());
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    private void btnCancelClick() {
+        tbStatus.setText(null);
+        tbNama.setText(null);
+        tbStatus.setText(null);
+        tbID.setDisable(true);
+        tbNama.setDisable(true);
+        tbStatus.setDisable(true);
+        btnSave.setDisable(true);
+        btnUpdate.setDisable(true);
+        btnDelete.setDisable(true);
+        btnCancel.setDisable(true);
     }
 }
