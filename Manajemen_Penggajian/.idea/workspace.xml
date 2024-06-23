@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="bd88bd93-dbab-4d95-bd25-9ac949295c34" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/CRUDGolongan.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/Button.css" afterDir="false" />
@@ -13,6 +14,9 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/DBConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/DBConnect.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/HelloApplication.java" afterDir="false" />
     </list>
+=======
+    <list default="true" id="bd88bd93-dbab-4d95-bd25-9ac949295c34" name="Changes" comment="" />
+>>>>>>> 1f0c7a22f0849df376f28321f31ab5b5d2a34883
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -118,6 +122,10 @@
       <workItem from="1719144528043" duration="405000" />
       <workItem from="1719144958048" duration="346000" />
       <workItem from="1719146299038" duration="3000" />
+<<<<<<< HEAD
+=======
+      <workItem from="1719146775571" duration="67000" />
+>>>>>>> 1f0c7a22f0849df376f28321f31ab5b5d2a34883
     </task>
     <servers />
   </component>
