@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.util.Optional;
 import java.net.URL;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
@@ -14,6 +15,7 @@ import java.sql.Types;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+//CRUD Golongan
 public class CRUDGolongan implements Initializable {
     private ObservableList<CRUDGolongan.Golongan> oblist = FXCollections.observableArrayList();
     DBConnect connect = new DBConnect();
