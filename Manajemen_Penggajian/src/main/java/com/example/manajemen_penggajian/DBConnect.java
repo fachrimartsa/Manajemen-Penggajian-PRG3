@@ -25,4 +25,8 @@ public class DBConnect {
             System.out.println("Connect Gagal :" +ex);
         }
     }
+
+    public Connection getConnection() {
+        return conn;
+    }
 }
