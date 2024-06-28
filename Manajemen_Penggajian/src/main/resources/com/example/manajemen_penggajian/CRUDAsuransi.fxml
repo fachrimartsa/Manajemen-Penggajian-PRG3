@@ -26,12 +26,28 @@
          </children>
       </Pane>
       <TableView fx:id="tbAsuransi" layoutX="21.0" layoutY="166.0" onMouseClicked="#onBtnTVClick" prefHeight="388.0" prefWidth="581.0">
-         <columns>
-            <TableColumn fx:id="tcNum" prefWidth="72.0" text="No" />
-            <TableColumn fx:id="tcJAsuransi" minWidth="9.60003662109375" prefWidth="270.0" text="Jenis Asuransi" />
+        <columns>
+          <TableColumn fx:id="tcNum" prefWidth="72.0" text="No" />
+          <TableColumn fx:id="tcJAsuransi" minWidth="9.60003662109375" prefWidth="270.0" text="Jenis Asuransi" />
             <TableColumn fx:id="tcIDGolongan" minWidth="0.0" prefWidth="238.0" text="ID Golongan" />
-         </columns>
+        </columns>
       </TableView>
+      <Button fx:id="btnUpdate" layoutX="1010.0" layoutY="611.0" mnemonicParsing="false" onAction="#onBtnUpdateClick" prefHeight="39.0" prefWidth="115.0" text="UPDATE" textFill="#432f79">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Button fx:id="btnSave" disable="true" layoutX="1010.0" layoutY="551.0" mnemonicParsing="false" onAction="#onBtnSaveClick" prefHeight="42.0" prefWidth="115.0" text="SAVE" textFill="#432f79">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Button fx:id="btnDelete" layoutX="1010.0" layoutY="662.0" mnemonicParsing="false" onAction="#onBtnDeleteClick" prefHeight="42.0" prefWidth="114.0" text="DEACTIVE" textFill="#432f79">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Button fx:id="btnClear" layoutX="476.0" layoutY="556.0" mnemonicParsing="false" onAction="#onBtnClearClick" prefHeight="32.0" prefWidth="81.0" text="CLEAR" textFill="#432f79">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
       <TextField fx:id="txtIDAsuransi" disable="true" editable="false" layoutX="784.0" layoutY="137.0" prefHeight="36.0" prefWidth="288.0" />
       <Label layoutX="633.0" layoutY="141.0" text="ID Asuransi" textFill="#432f79">
          <font>
@@ -65,52 +81,9 @@
             <Image url="@../../../image/MySearch.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnCreate" layoutX="617.0" layoutY="572.0" mnemonicParsing="false" onAction="#onBtnCreateClick" opacity="0.0" prefHeight="32.0" prefWidth="32.0" text="-|-" />
+      <Button fx:id="btnCreate" layoutX="568.0" layoutY="556.0" mnemonicParsing="false" onAction="#onBtnCreateClick" opacity="0.0" prefHeight="32.0" prefWidth="32.0" text="-|-" />
+      <ImageView fitHeight="36.0" fitWidth="37.0" layoutX="1049.0" layoutY="554.0" pickOnBounds="true" preserveRatio="true" />
       <Pane layoutX="1093.0" layoutY="333.0" prefHeight="200.0" prefWidth="43.0" />
-      <Pane layoutX="1090.0" layoutY="140.0" prefHeight="175.0" prefWidth="41.0">
-         <children>
-            <ImageView fitHeight="32.0" fitWidth="33.0" layoutX="6.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../image/broom_G.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="btnDelete" disable="true" layoutX="4.0" layoutY="93.0" mnemonicParsing="false" onAction="#onBtnDeleteClick" opacity="0.0" prefHeight="34.0" prefWidth="34.0" textFill="#432f79">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
-            <ImageView fitHeight="31.0" fitWidth="32.0" layoutX="6.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../image/Update.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="btnSave" disable="true" layoutY="2.0" mnemonicParsing="false" onAction="#onBtnSaveClick" opacity="0.0" prefHeight="40.0" prefWidth="41.0" text="SAVE" textFill="#432f79">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
-            <ImageView fitHeight="40.0" fitWidth="34.0" layoutX="5.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../image/save.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="btnUpdate" disable="true" layoutX="4.0" layoutY="48.0" mnemonicParsing="false" onAction="#onBtnUpdateClick" opacity="0.0" prefHeight="33.0" prefWidth="34.0" textFill="#432f79">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
-            <ImageView fitHeight="31.0" fitWidth="33.0" layoutX="6.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../image/deletee.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="btnClear" layoutX="6.0" layoutY="136.0" mnemonicParsing="false" onAction="#onBtnClearClick" opacity="0.0" prefHeight="32.0" prefWidth="33.0" textFill="#432f79">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
-         </children>
-      </Pane>
    </children>
    <opaqueInsets>
       <Insets />

@@ -28,20 +28,6 @@ public class FormDashboard {
     private VBox dropdownBox3;
     @FXML
     private Button btnTunjangan;
-    @FXML
-    private Button btnAsuransi;
-    @FXML
-    private Button btnGolongan;
-    @FXML
-    private Button btnJabatan;
-    @FXML
-    private Button btnDivisi;
-    @FXML
-    private Button btnShift;
-    @FXML
-    private Button btnPajak;
-    @FXML
-    private Button btnKaryawan;
 
     @FXML
     public void toggleDropdown() {
@@ -80,72 +66,6 @@ public class FormDashboard {
             Node crudTunjangan = loader.load();
             mainPanel.getChildren().clear();
             mainPanel.getChildren().add(crudTunjangan);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void btnAsuransiClick() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/manajemen_penggajian/CRUDAsuransi.fxml"));
-            Node crudAsuransi = loader.load();
-            mainPanel.getChildren().clear();
-            mainPanel.getChildren().add(crudAsuransi);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void btnPajakClick() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/manajemen_penggajian/CRUDPajak.fxml"));
-            Node crudPajak = loader.load();
-            mainPanel.getChildren().clear();
-            mainPanel.getChildren().add(crudPajak);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void btnGolonganClick() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/manajemen_penggajian/CRUDGolongan.fxml"));
-            Node crudGolongan = loader.load();
-            mainPanel.getChildren().clear();
-            mainPanel.getChildren().add(crudGolongan);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void btnDivisiClick() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/manajemen_penggajian/CRUDDivisi.fxml"));
-            Node crudDivisi = loader.load();
-            mainPanel.getChildren().clear();
-            mainPanel.getChildren().add(crudDivisi);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void btnJabatanClick() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/manajemen_penggajian/CRUDJabatan.fxml"));
-            Node crudJabatan = loader.load();
-            mainPanel.getChildren().clear();
-            mainPanel.getChildren().add(crudJabatan);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void btnShiftClick() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/manajemen_penggajian/CRUDShift.fxml"));
-            Node crudShift = loader.load();
-            mainPanel.getChildren().clear();
-            mainPanel.getChildren().add(crudShift);
         } catch (IOException e) {
             e.printStackTrace();
         }

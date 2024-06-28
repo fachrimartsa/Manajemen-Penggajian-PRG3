@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bd88bd93-dbab-4d95-bd25-9ac949295c34" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/CRUDAsuransi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/CRUDAsuransi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/CRUDShift.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/CRUDShift.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/DBConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/DBConnect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/CRUDAsuransi.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/CRUDAsuransi.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/CRUDJabatan.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/CRUDJabatan.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/CRUDShift.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/CRUDShift.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="bd88bd93-dbab-4d95-bd25-9ac949295c34" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,8 +13,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -30,9 +22,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectColorInfo">{
-    &quot;customColor&quot;: &quot;&quot;,
-    &quot;associatedIndex&quot;: 8
-    }</component>
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2hl6OvSNEBIA2gRGhL4e5NFCGmK" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -46,65 +38,43 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_directory_selection&quot;: &quot;D:/Belajar Coding/Semester 2/Pemrograman 3/Manajemen-Penggajian-PRG3/Manajemen_Penggajian/src/main/java/com/example/manajemen_penggajian&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/LEGION/Documents/Politeknik Astra/Tingkat 1/Semester 2/Project/PRG3/Manajemen-Penggajian-PRG3/Manajemen_Penggajian/src/main/sqljdbc4.jar&quot;,
+    &quot;last_directory_selection&quot;: &quot;D:/Backup_Prg-3/Manajemen_Penggajian/src/main/java/com/example/manajemen_penggajian&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Backup_Prg-3/Manajemen_Penggajian/src/main/resources/image&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.example.manajemen_penggajian" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Backup_Prg-3\Manajemen_Penggajian\src\main\resources\image" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Backup_Prg-3\Manajemen_Penggajian\src\main\resources\image" />
       <recent name="D:\PRG 3_SEM-2\Manajemen-Penggajian-PRG3\Manajemen-Penggajian-PRG3\Manajemen_Penggajian\src\main\resources\image" />
-      <recent name="C:\Users\LEGION\Documents\Politeknik Astra\Tingkat 1\Semester 2\Project\PRG3\Manajemen-Penggajian-PRG3\Manajemen_Penggajian\src\main\resources\com\example\manajemen_penggajian" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.HelloApplication">
-    <configuration name="DBConnect" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.manajemen_penggajian.DBConnect" />
-      <module name="Manajemen_Penggajian" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.manajemen_penggajian.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.manajemen_penggajian.HelloApplication" />
-      <module name="Manajemen_Penggajian" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.manajemen_penggajian.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.HelloApplication" />
-        <item itemvalue="Application.DBConnect" />
-      </list>
-    </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -114,32 +84,39 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1718156289644</updated>
-      <workItem from="1719059240619" duration="811000" />
-      <workItem from="1719121410429" duration="9857000" />
-      <workItem from="1719144528043" duration="405000" />
-      <workItem from="1719144958048" duration="346000" />
-      <workItem from="1719146299038" duration="3000" />
-      <workItem from="1719146775571" duration="67000" />
-      <workItem from="1719173338035" duration="174000" />
-      <workItem from="1719191454038" duration="17000" />
-      <workItem from="1719191497871" duration="97000" />
-      <workItem from="1719191609796" duration="22000" />
-      <workItem from="1719281449576" duration="1391000" />
-      <workItem from="1719292212221" duration="25000" />
-      <workItem from="1719298031142" duration="4883000" />
-      <workItem from="1719314449014" duration="91000" />
-      <workItem from="1719370341841" duration="5833000" />
-      <workItem from="1719437654085" duration="654000" />
-      <workItem from="1719474490164" duration="31000" />
-      <workItem from="1719540808978" duration="403000" />
-      <workItem from="1719541302412" duration="2344000" />
-      <workItem from="1719543667549" duration="4472000" />
-      <workItem from="1719554259472" duration="239000" />
+      <workItem from="1718954564922" duration="753000" />
+      <workItem from="1719033484737" duration="999000" />
+      <workItem from="1719098018650" duration="30121000" />
+      <workItem from="1719163867861" duration="40000" />
+      <workItem from="1719170577796" duration="6000" />
+      <workItem from="1719170593103" duration="1985000" />
+      <workItem from="1719172983643" duration="247000" />
+      <workItem from="1719173554555" duration="61000" />
+      <workItem from="1719189493046" duration="1947000" />
+      <workItem from="1719191471802" duration="8200000" />
+      <workItem from="1719199951354" duration="8189000" />
+      <workItem from="1719256474491" duration="10390000" />
+      <workItem from="1719274990784" duration="12227000" />
+      <workItem from="1719292238520" duration="14820000" />
+      <workItem from="1719314541792" duration="1332000" />
+      <workItem from="1719318127368" duration="600000" />
+      <workItem from="1719355220152" duration="2902000" />
+      <workItem from="1719368055612" duration="3548000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.IllegalStateException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Manajemen_Penggajian$HelloApplication.ic" NAME="HelloApplication Coverage Results" MODIFIED="1718872127774" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

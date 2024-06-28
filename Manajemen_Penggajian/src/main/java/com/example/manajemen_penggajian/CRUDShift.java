@@ -11,9 +11,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 
-import javax.sound.sampled.DataLine;
-import javax.sound.sampled.Line;
-import java.security.MessageDigest;
 import java.sql.*;
 import java.util.Optional;
 
@@ -60,8 +57,6 @@ public class CRUDShift {
     @FXML
     public void initialize() {
         loadviewtable();
-        //valdasi waktu shift
-        addValidationListener();
         addTableListener();
         onBtnSearchClick();
     }
@@ -140,6 +135,7 @@ public class CRUDShift {
         txtJumKar.setDisable(true);
 
     }
+
     @FXML
     protected void onBtnUpdateClick() {
         String IDShift = txtIDShift.getText();
@@ -339,20 +335,18 @@ public class CRUDShift {
         tbShift.setItems(SList);
     }
     //===================================== VALIDASI OBJEK ========================================
+    public void ontxtWShift_Changed(InputMethodEvent inputMethodEvent) {
 
-
-    // Tambahkan metode ini untuk menambahkan listener ke txtWShift
-    private void addValidationListener() {
-        txtWShift.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue) { // focus lost
-                String input = txtWShift.getText();
-                if (!input.matches("\\d{2}:\\d{2}\\s*-\\s*\\d{2}:\\d{2}") || !input.matches("[0-9:\\s-]+")) {
-                    showErrorAlert("Invalid input! Please use HH:MM - HH:MM format \nAnd only digits, colon (:) and hyphen (-) are allowed.", null);
-                }
-            }
-
-        });
+        String input = txtWShift.getText();
+        String regex = "[0-9a-zA-Z\\-]*"; // Ini adalah regex untuk karakter yang diperbolehkan
+        if (!input.matches(regex)) {
+            inputMethodEvent.consume(); // Menghentikan event agar karakter tersebut tidak ditambahkan
+            showErrorAlert(null, "Broken Validate");
+        }
     }
+
+
+
 
 
     //===================================== VALIDASI ALERT INFORMATION ============== ==========
@@ -371,6 +365,7 @@ public class CRUDShift {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
 
 
 

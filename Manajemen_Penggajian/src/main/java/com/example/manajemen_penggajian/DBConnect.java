@@ -16,17 +16,17 @@ public class DBConnect {
         } catch (Exception ex) {
             System.out.println("Error saat connect database: " + ex);
         }
-    }
-    public static void main (String args[]){
-        try{
-            DBConnect connect = new DBConnect();
-            System.out.println("Connect Berhasil");
-        }catch (Exception ex){
-            System.out.println("Connect Gagal :" +ex);
-        }
-    }
 
+
+    }
     public Connection getConnection() {
         return conn;
     }
+
+    public static void main(String[] args) {
+        DBConnect DB = new DBConnect();
+
+    }
+
+
 }

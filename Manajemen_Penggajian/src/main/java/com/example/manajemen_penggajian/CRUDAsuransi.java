@@ -72,8 +72,6 @@ public class CRUDAsuransi {
         btnSave.setDisable(false);
         txtIDAsuransi.setText(autoIDAsuransi());
 
-        btnUpdate.setDisable(true);
-        btnDelete.setDisable(true);
 
     }
     @FXML
@@ -81,10 +79,6 @@ public class CRUDAsuransi {
         txtIDAsuransi.setDisable(false);
         txtJAsuransi.setDisable(false);
         cbIDGolongan.setDisable(false);
-
-        btnSave.setDisable(true);
-        btnUpdate.setDisable(false);
-        btnDelete.setDisable(false);
     }
 
     //METHOD SAVE DATA
@@ -129,15 +123,9 @@ public class CRUDAsuransi {
             showErrorAlert(ex.getMessage(), "Insert data Fail :\n");
         }
         refreshTable();
-        //textfield
         txtIDAsuransi.setDisable(true);
         txtJAsuransi.setDisable(true);
         cbIDGolongan.setDisable(true);
-        //button
-        btnDelete.setDisable(true);
-        btnSave.setDisable(true);
-        btnUpdate.setDisable(true);
-
 
     }
     @FXML
@@ -145,13 +133,14 @@ public class CRUDAsuransi {
         txtIDAsuransi.setText("");
         txtJAsuransi.setText("");
         cbIDGolongan.setValue(null);
+        txtStatus.setText("");
     }
     @FXML
     protected void onBtnUpdateClick() {
         String IDAsuransi = txtIDAsuransi.getText();
         String Jenis_Asuransi = txtJAsuransi.getText();
         Golongan golongan = cbIDGolongan.getValue(); // Ambil objek Golongan dari ComboBox
-        String status = "Active";
+        String status = txtStatus.getText();
 
         // Pastikan IDGolongan tidak null dan ada dalam database
         if (golongan != null) {
@@ -176,52 +165,44 @@ public class CRUDAsuransi {
         }
         refreshview();
         refreshTable();
-        //textfield
-        txtIDAsuransi.setDisable(true);
-        txtJAsuransi.setDisable(true);
-        cbIDGolongan.setDisable(true);
-        //button
-        btnDelete.setDisable(true);
-        btnSave.setDisable(true);
-        btnUpdate.setDisable(true);
     }
 
 
     @FXML
     protected void onBtnSearchClick(){
-        String searchText = txtSearch.getText().trim(); // Mengambil teks pencarian dan menghapus spasi di sekitarnya
+            String searchText = txtSearch.getText().trim(); // Mengambil teks pencarian dan menghapus spasi di sekitarnya
 
-        // Membuat koneksi dan mempersiapkan panggilan stored procedure
-        Connection conn = CONAS.getConnection(); // Ganti CONAS.getConnection() sesuai dengan cara Anda mendapatkan koneksi
-        CallableStatement stmt = null;
-        ResultSet rs = null;
+            // Membuat koneksi dan mempersiapkan panggilan stored procedure
+            Connection conn = CONAS.getConnection(); // Ganti CONAS.getConnection() sesuai dengan cara Anda mendapatkan koneksi
+            CallableStatement stmt = null;
+            ResultSet rs = null;
 
-        try {
-            // Panggil stored procedure dengan parameter searchText
-            stmt = conn.prepareCall("{call sp_CariAsuransi(?)}");
-            stmt.setString(1, searchText);
+            try {
+                // Panggil stored procedure dengan parameter searchText
+                stmt = conn.prepareCall("{call sp_CariAsuransi(?)}");
+                stmt.setString(1, searchText);
 
-            // Eksekusi query
-            rs = stmt.executeQuery();
+                // Eksekusi query
+                rs = stmt.executeQuery();
 
-            // Bersihkan data sebelum memuat hasil pencarian baru
-            tbAsuransi.getItems().clear(); // Menghapus item yang ada di dalam TableView
+                // Bersihkan data sebelum memuat hasil pencarian baru
+                tbAsuransi.getItems().clear(); // Menghapus item yang ada di dalam TableView
 
-            // Memuat hasil pencarian ke dalam TableView
-            while (rs.next()) {
-                Asuransi asuransi = new Asuransi(
-                        rs.getString("IDAsuransi"),
-                        rs.getString("Jenis_Asuransi"),
-                        rs.getString("IDGolongan"),
-                        rs.getString("status")
-                );
-                tbAsuransi.getItems().add(asuransi); // Menambahkan asuransi ke dalam TableView
-            }
+                // Memuat hasil pencarian ke dalam TableView
+                while (rs.next()) {
+                    Asuransi asuransi = new Asuransi(
+                            rs.getString("IDAsuransi"),
+                            rs.getString("Jenis_Asuransi"),
+                            rs.getString("IDGolongan"),
+                            rs.getString("status")
+                    );
+                    tbAsuransi.getItems().add(asuransi); // Menambahkan asuransi ke dalam TableView
+                }
 
-        }catch (SQLException ex){
+            }catch (SQLException ex){
             ex.printStackTrace();
             showErrorAlert(ex.getMessage(), "Error searching data:");
-        }
+            }
         refreshview();
 
     }
@@ -230,6 +211,7 @@ public class CRUDAsuransi {
     protected void onBtnDeleteClick() {
         String IDAsuransi = txtIDAsuransi.getText();
         String status = "Non Active";
+        txtStatus.setText("Deactive");
 
         // Membuat alert konfirmasi
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -265,14 +247,6 @@ public class CRUDAsuransi {
             showInformationAlert("Disabled action cancelled");
         }
         refreshTable();
-        //textfield
-        txtIDAsuransi.setDisable(true);
-        txtJAsuransi.setDisable(true);
-        cbIDGolongan.setDisable(true);
-        //button
-        btnDelete.setDisable(true);
-        btnSave.setDisable(true);
-        btnUpdate.setDisable(true);
     }
 
 
