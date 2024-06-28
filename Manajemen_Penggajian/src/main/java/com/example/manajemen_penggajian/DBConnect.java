@@ -10,7 +10,7 @@ public class DBConnect {
 
     public DBConnect() {
         try{
-            String url = "jdbc:sqlserver://localhost;databaseName=Manajemen_Penggajian;user=sa;password=polman";
+            String url = "jdbc:sqlserver://localhost;databaseName=PercobaanProject;user=sa;password=polman";
             conn = DriverManager.getConnection(url);
             stat = conn.createStatement();
         } catch (Exception ex) {

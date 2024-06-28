@@ -1,14 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.manajemen_penggajian.CRUDShift"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="732.0" prefWidth="1156.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.manajemen_penggajian.CRUDShift">
+    <children>
+        <Pane prefHeight="105.0" prefWidth="1156.0" style="-fx-background-color: #123456;">
+            <children>
+                <Label layoutX="94.0" layoutY="32.0" prefHeight="48.0" prefWidth="240.0" text="Master Shift" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="28.0" />
+                    </font>
+                </Label>
+                <Pane layoutX="1035.0" layoutY="44.0" prefHeight="38.0" prefWidth="37.0" />
+            </children>
+        </Pane>
+        <TableView fx:id="tbShift" layoutX="24.0" layoutY="157.0" onMouseClicked="#onBtnTVClick" prefHeight="386.0" prefWidth="622.0">
+            <columns>
+                <TableColumn fx:id="tcNum" prefWidth="65.0" text="No" />
+                <TableColumn fx:id="tcJShift" minWidth="9.60003662109375" prefWidth="193.0" text="Jenis Shift" />
+                <TableColumn fx:id="tcWShift" minWidth="0.0" prefWidth="185.0" text="Waktu Shift" />
+                <TableColumn fx:id="tcJumShift" minWidth="0.0" prefWidth="178.0" text="Jumlah Shift" />
+            </columns>
+        </TableView>
+        <Label layoutX="665.0" layoutY="128.0" text="ID Shift">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+        <Label layoutX="665.0" layoutY="182.0" text="Jenis Shift">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+        <Label layoutX="665.0" layoutY="235.0" text="Waktu Shift" textFill="#141414">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+        <Label layoutX="665.0" layoutY="290.0" prefHeight="27.0" prefWidth="153.0" text="Jumlah Karyawan">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+        <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="616.0" layoutY="545.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../image/add.png" />
+            </image>
+        </ImageView>
+        <Button fx:id="btnCreate" layoutX="616.0" layoutY="545.0" mnemonicParsing="false" onAction="#onBtnCreateClick" opacity="0.0" prefHeight="32.0" prefWidth="32.0" text="-|-" />
+        <TextField fx:id="txtIDShift" disable="true" editable="false" layoutX="835.0" layoutY="121.0" prefHeight="36.0" prefWidth="231.0" />
+        <TextField fx:id="txtJShift" disable="true" layoutX="835.0" layoutY="176.0" prefHeight="36.0" prefWidth="231.0" />
+        <TextField fx:id="txtWShift" disable="true" layoutX="835.0" layoutY="228.0" prefHeight="36.0" prefWidth="231.0" promptText="HH:MM - HH:MM" />
+        <TextField fx:id="txtSearch" layoutX="24.0" layoutY="121.0" onKeyTyped="#onBtnSearchClick" prefHeight="32.0" prefWidth="580.0" promptText="Search. . . ">
+            <font>
+                <Font name="Franklin Gothic Book" size="15.0" />
+            </font>
+        </TextField>
+        <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="613.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../image/MySearch.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="150.0" fitWidth="87.0" layoutX="206.0" layoutY="561.0" pickOnBounds="true" preserveRatio="true" />
+        <Pane layoutX="1085.0" layoutY="121.0" prefHeight="199.0" prefWidth="51.0">
+            <children>
+                <ImageView fitHeight="37.0" fitWidth="37.0" layoutX="8.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../image/Update.png" />
+                    </image>
+                </ImageView>
+                <Button fx:id="BtnUpdate" layoutX="7.0" layoutY="106.0" mnemonicParsing="false" onAction="#onBtnUpdateClick" opacity="0.0" prefHeight="39.0" prefWidth="38.0" textFill="#432f79">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Button>
+                <ImageView fitHeight="42.0" fitWidth="37.0" layoutX="8.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../image/deletee.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="32.0" fitWidth="34.0" layoutX="10.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../image/save.png" />
+                    </image>
+                </ImageView>
+                <Button fx:id="btnDelete" layoutX="7.0" layoutY="56.0" mnemonicParsing="false" onAction="#onBtnDeleteClick" opacity="0.0" prefHeight="37.0" prefWidth="38.0" textFill="#432f79">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnSave" disable="true" layoutX="7.0" layoutY="6.0" mnemonicParsing="false" onAction="#onBtnSaveClick" opacity="0.0" prefHeight="38.0" prefWidth="37.0" textFill="#432f79">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Button>
+                <ImageView fitHeight="36.0" fitWidth="38.0" layoutX="9.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../image/broom_G.png" />
+                    </image>
+                </ImageView>
+                <Button fx:id="btnClear" layoutX="9.0" layoutY="157.0" mnemonicParsing="false" onAction="#onBtnClearClick" opacity="0.0" prefHeight="37.0" prefWidth="37.0" textFill="#432f79">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Button>
+            </children>
+        </Pane>
+        <TextField fx:id="txtJumKar" disable="true" layoutX="835.0" layoutY="286.0" prefHeight="36.0" prefWidth="231.0" />
+    </children>
 </AnchorPane>

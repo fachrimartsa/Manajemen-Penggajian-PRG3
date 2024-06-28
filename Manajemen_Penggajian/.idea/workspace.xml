@@ -6,13 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="bd88bd93-dbab-4d95-bd25-9ac949295c34" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/CRUDTunjangan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/CRUDTunjangan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/FormDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/FormDashboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/CRUDAsuransi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/CRUDAsuransi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/CRUDShift.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/CRUDShift.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/DBConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/DBConnect.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/CRUDAsuransi.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/CRUDAsuransi.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/CRUDTunjangan.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/CRUDTunjangan.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/FormDashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/FormDashboard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/CRUDJabatan.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/CRUDJabatan.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/CRUDShift.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/CRUDShift.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +39,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
-    &quot;keyToString&quot;: {
+  &quot;keyToString&quot;: {
     &quot;Application.DBConnect.executor&quot;: &quot;Run&quot;,
     &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
@@ -58,10 +57,11 @@
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-    }
-    }</component>
+  }
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\PRG 3_SEM-2\Manajemen-Penggajian-PRG3\Manajemen-Penggajian-PRG3\Manajemen_Penggajian\src\main\resources\image" />
       <recent name="C:\Users\LEGION\Documents\Politeknik Astra\Tingkat 1\Semester 2\Project\PRG3\Manajemen-Penggajian-PRG3\Manajemen_Penggajian\src\main\resources\com\example\manajemen_penggajian" />
     </key>
   </component>
@@ -120,6 +120,21 @@
       <workItem from="1719144958048" duration="346000" />
       <workItem from="1719146299038" duration="3000" />
       <workItem from="1719146775571" duration="67000" />
+      <workItem from="1719173338035" duration="174000" />
+      <workItem from="1719191454038" duration="17000" />
+      <workItem from="1719191497871" duration="97000" />
+      <workItem from="1719191609796" duration="22000" />
+      <workItem from="1719281449576" duration="1391000" />
+      <workItem from="1719292212221" duration="25000" />
+      <workItem from="1719298031142" duration="4883000" />
+      <workItem from="1719314449014" duration="91000" />
+      <workItem from="1719370341841" duration="5833000" />
+      <workItem from="1719437654085" duration="654000" />
+      <workItem from="1719474490164" duration="31000" />
+      <workItem from="1719540808978" duration="403000" />
+      <workItem from="1719541302412" duration="2344000" />
+      <workItem from="1719543667549" duration="4472000" />
+      <workItem from="1719554259472" duration="239000" />
     </task>
     <servers />
   </component>

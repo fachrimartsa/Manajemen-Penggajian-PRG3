@@ -18,7 +18,7 @@
    <children>
       <Pane layoutX="392.0" layoutY="73.0" prefHeight="732.0" prefWidth="1156.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-      
+
                   <ImageView fitHeight="776.0" fitWidth="1483.0" layoutX="419.0" layoutY="90.0" opacity="0.09" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../image/logo.png" />

@@ -1,22 +1,15 @@
 package com.example.manajemen_penggajian;
 
-import javafx.application.Application;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 
 import javax.swing.*;
-import java.io.IOException;
-import java.math.BigDecimal;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.Optional;
 
 public class CRUDAsuransi {
 
@@ -24,13 +17,12 @@ public class CRUDAsuransi {
     @FXML
     private TableView<Asuransi> tbAsuransi;
     @FXML
-    private TableColumn<Asuransi, String> tcIDAsuransi;
+    private TableColumn<Asuransi, Integer> tcNum;
     @FXML
     private TableColumn<Asuransi, String> tcJAsuransi;
     @FXML
     private TableColumn<Asuransi, String> tcIDGolongan;
-    @FXML
-    private TableColumn<Asuransi, String> tcStatus;
+
 
 
     @FXML
@@ -66,6 +58,7 @@ public class CRUDAsuransi {
         // Inisialisasi ComboBox dengan data dari database
         loadDataGolongan();
         loadviewtable();
+        addTableListener();
     }
 
     //========================= METHOD ON ACTION =========================
@@ -76,12 +69,22 @@ public class CRUDAsuransi {
         txtIDAsuransi.setDisable(false);
         txtJAsuransi.setDisable(false);
         cbIDGolongan.setDisable(false);
+        btnSave.setDisable(false);
         txtIDAsuransi.setText(autoIDAsuransi());
+
+        btnUpdate.setDisable(true);
+        btnDelete.setDisable(true);
 
     }
     @FXML
-    protected void onBtnRefreshClick(){
-        refreshview();
+    protected void onBtnTVClick(){
+        txtIDAsuransi.setDisable(false);
+        txtJAsuransi.setDisable(false);
+        cbIDGolongan.setDisable(false);
+
+        btnSave.setDisable(true);
+        btnUpdate.setDisable(false);
+        btnDelete.setDisable(false);
     }
 
     //METHOD SAVE DATA
@@ -104,7 +107,7 @@ public class CRUDAsuransi {
             int count = rs.getInt(1); // Ambil nilai COUNT(*)
 
             if (count > 0) {
-                JOptionPane.showMessageDialog(null, "Data Same, Data fail to save");
+                showErrorAlert(null, "Data Same, Data fail to save");
             } else {
                 // Membuat koneksi dan callable statement untuk menyimpan data baru
                 CONAS.pstat = CONAS.conn.prepareCall("{call sp_CreateAsuransi(?, ?, ?, ?)}");
@@ -117,29 +120,189 @@ public class CRUDAsuransi {
                 CONAS.pstat.executeUpdate();
                 CONAS.pstat.close();
 
-                JOptionPane.showMessageDialog(null, "Insert Data Success!");
+                showInformationAlert("Insert Data Success!");
             }
             rs.close();
             checkStmt.close();
         } catch (SQLException ex) {
             ex.printStackTrace(); // Tampilkan trace error ke konsol untuk debugging
-            JOptionPane.showMessageDialog(null, "Insert data Fail :\n" + ex.getMessage());
+            showErrorAlert(ex.getMessage(), "Insert data Fail :\n");
         }
+        refreshTable();
+        //textfield
         txtIDAsuransi.setDisable(true);
         txtJAsuransi.setDisable(true);
         cbIDGolongan.setDisable(true);
+        //button
+        btnDelete.setDisable(true);
+        btnSave.setDisable(true);
+        btnUpdate.setDisable(true);
+
+
     }
     @FXML
     protected void onBtnClearClick(){
         txtIDAsuransi.setText("");
         txtJAsuransi.setText("");
         cbIDGolongan.setValue(null);
-        txtStatus.setText("");
     }
+    @FXML
+    protected void onBtnUpdateClick() {
+        String IDAsuransi = txtIDAsuransi.getText();
+        String Jenis_Asuransi = txtJAsuransi.getText();
+        Golongan golongan = cbIDGolongan.getValue(); // Ambil objek Golongan dari ComboBox
+        String status = "Active";
+
+        // Pastikan IDGolongan tidak null dan ada dalam database
+        if (golongan != null) {
+            try {
+                // Menggunakan koneksi yang sama dengan kelas DBConnect
+                String query = "{call sp_UpdateAsuransi(?, ?, ?, ?)}";
+                CONAS.pstat = CONAS.conn.prepareCall(query);
+                CONAS.pstat.setString(1, IDAsuransi); // Memastikan IDAsuransi diset terlebih dahulu
+                CONAS.pstat.setString(2, Jenis_Asuransi);
+                CONAS.pstat.setString(3, golongan.getIDGolongan()); // Mengambil ID Golongan dari objek Golongan
+                CONAS.pstat.setString(4, status);
+                CONAS.pstat.executeUpdate();
+                CONAS.pstat.close();
+
+                showInformationAlert("Update data Success");
+            } catch (SQLException ex) {
+                ex.printStackTrace(); // Tampilkan trace error ke konsol untuk debugging
+                showErrorAlert(ex.getMessage(), "Update data Fail :\n");
+            }
+        } else {
+            showErrorAlert(null, "Golongan Not Valid");
+        }
+        refreshview();
+        refreshTable();
+        //textfield
+        txtIDAsuransi.setDisable(true);
+        txtJAsuransi.setDisable(true);
+        cbIDGolongan.setDisable(true);
+        //button
+        btnDelete.setDisable(true);
+        btnSave.setDisable(true);
+        btnUpdate.setDisable(true);
+    }
+
+
+    @FXML
+    protected void onBtnSearchClick(){
+        String searchText = txtSearch.getText().trim(); // Mengambil teks pencarian dan menghapus spasi di sekitarnya
+
+        // Membuat koneksi dan mempersiapkan panggilan stored procedure
+        Connection conn = CONAS.getConnection(); // Ganti CONAS.getConnection() sesuai dengan cara Anda mendapatkan koneksi
+        CallableStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            // Panggil stored procedure dengan parameter searchText
+            stmt = conn.prepareCall("{call sp_CariAsuransi(?)}");
+            stmt.setString(1, searchText);
+
+            // Eksekusi query
+            rs = stmt.executeQuery();
+
+            // Bersihkan data sebelum memuat hasil pencarian baru
+            tbAsuransi.getItems().clear(); // Menghapus item yang ada di dalam TableView
+
+            // Memuat hasil pencarian ke dalam TableView
+            while (rs.next()) {
+                Asuransi asuransi = new Asuransi(
+                        rs.getString("IDAsuransi"),
+                        rs.getString("Jenis_Asuransi"),
+                        rs.getString("IDGolongan"),
+                        rs.getString("status")
+                );
+                tbAsuransi.getItems().add(asuransi); // Menambahkan asuransi ke dalam TableView
+            }
+
+        }catch (SQLException ex){
+            ex.printStackTrace();
+            showErrorAlert(ex.getMessage(), "Error searching data:");
+        }
+        refreshview();
+
+    }
+
+    @FXML
+    protected void onBtnDeleteClick() {
+        String IDAsuransi = txtIDAsuransi.getText();
+        String status = "Non Active";
+
+        // Membuat alert konfirmasi
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation for De-Active");
+        alert.setHeaderText("Are you sure to De-Active this data?");
+        alert.setContentText("Select 'OK' to De-Active or 'Cancel' to cancel.");
+
+        // Menambahkan tombol OK dan Cancel
+        ButtonType okButton = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+        ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(okButton, cancelButton);
+
+        // Menunggu respons pengguna
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == okButton) {
+            // Pengguna mengklik OK, maka lanjutkan menonaktifkan data
+            try {
+                // Menggunakan koneksi yang sama dengan kelas DBConnect
+                String query = "{call sp_DeleteAsuransi(?, ?)}";
+                CONAS.pstat = CONAS.conn.prepareStatement(query);
+                CONAS.pstat.setString(1, IDAsuransi);
+                CONAS.pstat.setString(2, status);
+                CONAS.pstat.executeUpdate();
+                CONAS.pstat.close();
+
+                showInformationAlert("Data berhasil di-nonaktifkan");
+            } catch (SQLException ex) {
+                ex.printStackTrace(); // Tampilkan trace error ke konsol untuk debugging
+                showErrorAlert(ex.getMessage(),"Deactive data Fail :" );
+            }
+        } else {
+            // Pengguna mengklik Cancel, tindakan dibatalkan
+            showInformationAlert("Disabled action cancelled");
+        }
+        refreshTable();
+        //textfield
+        txtIDAsuransi.setDisable(true);
+        txtJAsuransi.setDisable(true);
+        cbIDGolongan.setDisable(true);
+        //button
+        btnDelete.setDisable(true);
+        btnSave.setDisable(true);
+        btnUpdate.setDisable(true);
+    }
+
 
 
     //============================= METHOD ===========================
 
+    private void addTableListener() {
+        tbAsuransi.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                populateFields(newSelection);
+            }
+        });
+    }
+    private void populateFields(Asuransi asur) {
+        txtIDAsuransi.setText(asur.getIDAsu());
+        txtJAsuransi.setText(asur.getJAsu());
+        Golongan selectedGolongan = findGolonganById(asur.getIDGo());// Mengambil objek Golongan dari ComboBox berdasarkan IDGolongan yang ada pada Asuransi
+        cbIDGolongan.setValue(selectedGolongan);
+
+    }
+
+    // Method untuk mencari objek Golongan berdasarkan IDGolongan
+    private Golongan findGolonganById(String idGolongan) {
+        for (Golongan golongan : cbIDGolongan.getItems()) {
+            if (golongan.getIDGolongan().equals(idGolongan)) {
+                return golongan;
+            }
+        }
+        return null; // Mengembalikan null jika tidak ditemukan
+    }
     //VIEW TABLE
     private void loadviewtable() {
         try {
@@ -158,17 +321,25 @@ public class CRUDAsuransi {
             connection.stat.close();
             connection.result.close();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "ERROR:\n" + ex.getMessage());
+            showErrorAlert(ex.getMessage(), "ERROR:\n");
         }
         refreshview();
     }
+
+    private void refreshTable() {
+        // Simulate refreshing data (replace with actual data refreshing logic)
+        Aslist.clear(); // Clear existing data
+        // Load new data (for demonstration, load the same initial data)
+        loadviewtable();
+    }
+
+
     //REFRESH TABLE VIEW
     private void refreshview(){
         // Menampilkan data ke dalam TableView
-        tcIDAsuransi.setCellValueFactory(new PropertyValueFactory<>("IDAsu"));
+        tcNum.setCellValueFactory(cellData -> new SimpleIntegerProperty(tbAsuransi.getItems().indexOf(cellData.getValue())+1).asObject());
         tcJAsuransi.setCellValueFactory(new PropertyValueFactory<>("JAsu"));
         tcIDGolongan.setCellValueFactory(new PropertyValueFactory<>("IDGo"));
-        tcStatus.setCellValueFactory(new PropertyValueFactory<>("stat"));
         tbAsuransi.setItems(Aslist);
     }
 
@@ -192,11 +363,12 @@ public class CRUDAsuransi {
             cbIDGolongan.setItems(observableGolonganNames); // Mengatur items ComboBox dengan nama-nama Golongan
         } catch (SQLException e) {
             e.printStackTrace();
+            showErrorAlert(e.getMessage(), "ERROR:\n");
         }
     }
 
     private String autoIDAsuransi() {
-        String nextID = "AS001"; // Nilai default
+        String nextID = "AS000"; // Nilai default
 
         try {
             Connection  connection = CONAS.getConnection();
@@ -224,6 +396,23 @@ public class CRUDAsuransi {
 
         // Menghasilkan ID berikutnya dengan format "AS" diikuti nomor urutan yang diubah kembali menjadi string
         return prefix + String.format("%03d", sequence); // Format untuk mendapatkan 3 digit nomor
+    }
+
+    //===================================== VALIDASI ============================================== SHOW ERROR ==========
+    public void showErrorAlert(String message, String s) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private void showInformationAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     //======================================= ENCAPSULATED ================================
