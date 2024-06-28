@@ -5,49 +5,121 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+
 <!--
 <CRUD Pajak/>-->
+
 <AnchorPane prefHeight="732.0" prefWidth="1156.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.manajemen_penggajian.CRUDPajak">
    <children>
-      <Pane layoutX="235.0" layoutY="23.0" prefHeight="100.0" prefWidth="1156.0" style="-fx-background-color: #B0DFFF;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Pane layoutX="312.0" layoutY="494.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Text layoutX="44.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MASTER PAJAK">
+            <ImageView fitHeight="776.0" fitWidth="1483.0" layoutX="405.0" layoutY="82.0" opacity="0.09" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../image/logo.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="btnClear" accessibleRole="BUTTON" layoutX="531.0" layoutY="505.0" onAction="#btnClearClick" prefHeight="28.0" prefWidth="35.0">
+               <graphic>
+                  <ImageView fitHeight="19.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../image/deactive.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <TextField fx:id="txtPersentase" disable="true" layoutX="769.0" layoutY="260.0" prefHeight="35.0" prefWidth="281.0">
                <font>
-                  <Font name="Segoe UI Bold" size="25.0" />
+                  <Font name="Arial Rounded MT Bold" size="12.0" />
+               </font>
+            </TextField>
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="566.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../image/search.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="235.0" layoutY="23.0" prefHeight="100.0" prefWidth="1156.0" style="-fx-background-color: #365486;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Text fill="WHITE" layoutX="44.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tax">
+               <font>
+                  <Font name="Arial Black" size="43.0" />
                </font>
             </Text>
          </children>
       </Pane>
-      <TableView fx:id="dgvPajak" layoutX="40.0" layoutY="154.0" onMouseClicked="#ClickdgvPajak" prefHeight="346.0" prefWidth="1082.0">
-        <columns>
-          <TableColumn fx:id="Nama" prefWidth="336.0" text="Tax Name" />
-            <TableColumn fx:id="Persentase" prefWidth="415.0" text="Percentage" />
-            <TableColumn fx:id="Status" prefWidth="330.0" text="Status" />
-        </columns>
+      <TableView fx:id="dgvPajak" layoutX="40.0" layoutY="154.0" onMouseClicked="#ClickdgvPajak" prefHeight="346.0" prefWidth="567.0" style="-fx-background-color: #ffffff; -fx-border-color: #365486; -fx-border-radius: 4; -fx-padding: 5;">
+         <columns>
+            <TableColumn fx:id="cNum" prefWidth="50.33332824707031" text="No. " />
+            <TableColumn fx:id="Nama" prefWidth="243.0" text="Tax Name" />
+            <TableColumn fx:id="Persentase" prefWidth="267.0" text="Percentage" />
+         </columns>
       </TableView>
-      <TextField fx:id="txtCari" layoutX="414.0" layoutY="112.0" prefHeight="25.0" prefWidth="317.0" />
-      <Button fx:id="btnCari" layoutX="739.0" layoutY="112.0" mnemonicParsing="false" onAction="#btnSearchClick" stylesheets="@Button.css" text="Search" />
-      <Text layoutX="355.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search" wrappingWidth="52.0">
+      <Label layoutX="625.0" layoutY="113.0" text="Tax ID">
          <font>
-            <Font name="Segoe UI" size="15.0" />
+            <Font name="Century Gothic Bold" size="18.0" />
+         </font></Label>
+      <Label layoutX="625.0" layoutY="183.0" text="Tax Name">
+         <font>
+            <Font name="Century Gothic Bold" size="18.0" />
+         </font></Label>
+      <Label layoutX="627.0" layoutY="260.0" text="Percentage">
+         <font>
+            <Font name="Century Gothic Bold" size="18.0" />
+         </font></Label>
+      <TextField fx:id="txtCari" layoutX="40.0" layoutY="106.0" onKeyTyped="#searchPajak" prefHeight="37.0" prefWidth="514.0" promptText="Search" />
+      <Button fx:id="btnCreate" layoutX="570.0" layoutY="505.0" onAction="#btnCreateClick" prefHeight="17.0" prefWidth="25.0">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../image/add.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <TextField fx:id="txtID" disable="true" layoutX="765.0" layoutY="107.0" prefHeight="35.0" prefWidth="281.0">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="12.0" />
          </font>
-      </Text>
-      <Button fx:id="btnCreate" layoutX="40.0" layoutY="513.0" mnemonicParsing="false" onAction="#btnCreateClick" stylesheets="@Button.css" text="Create" />
-      <Button fx:id="btnRefresh" layoutX="1046.0" layoutY="516.0" mnemonicParsing="false" onAction="#btnRefreshClick" prefHeight="25.0" prefWidth="76.0" stylesheets="@Button.css" text="Refresh" />
-      <Button fx:id="btnUpdate" layoutX="1046.0" layoutY="594.0" mnemonicParsing="false" onAction="#btnUpdateClick" prefHeight="25.0" prefWidth="76.0" stylesheets="@Button.css" text="Update" />
-      <Button fx:id="btnDelete" layoutX="1046.0" layoutY="631.0" mnemonicParsing="false" onAction="#btnDeleteClick" stylesheets="@Button.css" text="De-Active" />
-      <Button fx:id="btnEdit" layoutX="100.0" layoutY="513.0" mnemonicParsing="false" onAction="#btnEditClick" prefHeight="25.0" prefWidth="51.0" stylesheets="@Button.css" text="Edit" />
-      <TextField fx:id="txtID" layoutX="118.0" layoutY="586.0" prefHeight="25.0" prefWidth="395.0" />
-      <TextField fx:id="txtNama" layoutX="118.0" layoutY="622.0" prefHeight="25.0" prefWidth="395.0" />
-      <TextField fx:id="txtPersentase" layoutX="118.0" layoutY="661.0" prefHeight="25.0" prefWidth="395.0" />
-      <Label layoutX="40.0" layoutY="590.0" text="Tax ID" />
-      <Label layoutX="40.0" layoutY="626.0" text="Tax Name" />
-      <Label layoutX="40.0" layoutY="665.0" text="Percentage" />
-      <Button fx:id="btnSave" layoutX="1046.0" layoutY="554.0" mnemonicParsing="false" onAction="#btnSaveClick" prefHeight="25.0" prefWidth="76.0" stylesheets="@Button.css" text="Save" />
-      <Button fx:id="btnClear" layoutX="160.0" layoutY="513.0" mnemonicParsing="false" onAction="#btnClearClick" prefHeight="25.0" prefWidth="51.0" stylesheets="@Button.css" text="Clear" />
+      </TextField>
+      <TextField fx:id="txtNama" disable="true" layoutX="765.0" layoutY="177.0" prefHeight="35.0" prefWidth="281.0">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="12.0" />
+         </font>
+      </TextField>
+
+      <Button fx:id="btnDelete" accessibleRole="BUTTON" disable="true" layoutX="1061.0" layoutY="174.0" onAction="#btnDeleteClick" prefHeight="43.0" prefWidth="34.0">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../image/deletee.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btnSave" accessibleRole="BUTTON" disable="true" layoutX="1061.0" layoutY="104.0" onAction="#btnSaveClick" prefHeight="43.0" prefWidth="34.0">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../image/save.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btnUpdate" accessibleRole="BUTTON" disable="true" layoutX="1061.0" layoutY="251.0" onAction="#btnUpdateClick" prefHeight="43.0" prefWidth="34.0">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../image/Update.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>

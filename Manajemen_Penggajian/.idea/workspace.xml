@@ -5,16 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bd88bd93-dbab-4d95-bd25-9ac949295c34" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/CRUDKaryawan.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/CRUDKaryawan.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/CRUDAsuransi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/CRUDAsuransi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/CRUDTunjangan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/CRUDTunjangan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/FormDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/FormDashboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/CRUDAsuransi.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/CRUDAsuransi.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/CRUDGolongan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/CRUDGolongan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/CRUDPajak.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/CRUDPajak.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/CRUDGolongan.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/CRUDGolongan.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/CRUDTunjangan.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/CRUDTunjangan.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/FormDashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/FormDashboard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/CRUDPajak.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/CRUDPajak.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,6 +118,7 @@
       <workItem from="1719144958048" duration="346000" />
       <workItem from="1719146299038" duration="3000" />
       <workItem from="1719146775571" duration="67000" />
+      <workItem from="1719556283462" duration="75000" />
     </task>
     <servers />
   </component>

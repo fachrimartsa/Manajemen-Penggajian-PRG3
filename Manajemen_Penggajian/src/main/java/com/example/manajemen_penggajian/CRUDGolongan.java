@@ -1,11 +1,13 @@
 package com.example.manajemen_penggajian;
 
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 
 import java.util.Optional;
 import java.net.URL;
@@ -19,9 +21,10 @@ import java.util.ResourceBundle;
 public class CRUDGolongan implements Initializable {
     private ObservableList<CRUDGolongan.Golongan> oblist = FXCollections.observableArrayList();
     DBConnect connect = new DBConnect();
-    private boolean edit = false;
     @FXML
     private TableView<CRUDGolongan.Golongan> dgvGolongan;
+    @FXML
+    private TableColumn<CRUDAsuransi.Golongan, Integer> cNum;
     @FXML
     private TableColumn<Golongan,String> Nama;
     @FXML
@@ -35,8 +38,7 @@ public class CRUDGolongan implements Initializable {
     @FXML
     private TableColumn<Golongan,String> Status;
 
-    @FXML
-    private Button btnCari;
+
     @FXML
     private Button btnCreate;
     @FXML
@@ -47,8 +49,7 @@ public class CRUDGolongan implements Initializable {
     private Button btnUpdate;
     @FXML
     private Button btnDelete;
-    @FXML
-    private Button btnEdit;
+
     @FXML
     private Button btnClear;
     @FXML
@@ -65,6 +66,8 @@ public class CRUDGolongan implements Initializable {
     private TextField txtUangTransport;
     @FXML
     private TextField txtCari;
+    @FXML
+    private TextField txtStatus;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -83,12 +86,16 @@ public class CRUDGolongan implements Initializable {
                         rs.getString("status")
                 ));
             }
+
+            cNum.setCellValueFactory(cellData -> new SimpleIntegerProperty(dgvGolongan.getItems().indexOf(cellData.getValue()) +1).asObject());
             Nama.setCellValueFactory(new PropertyValueFactory<>("Nama"));
             Gaji.setCellValueFactory(new PropertyValueFactory<>("Gaji"));
             Masa.setCellValueFactory(new PropertyValueFactory<>("Masa"));
             UangMakan.setCellValueFactory(new PropertyValueFactory<>("UangMakan"));
             UangTransport.setCellValueFactory(new PropertyValueFactory<>("UangTransport"));
+/*
             Status.setCellValueFactory(new PropertyValueFactory<>("Status"));
+*/
             dgvGolongan.setItems(oblist);
 
             txtID.setDisable(true);
@@ -98,17 +105,83 @@ public class CRUDGolongan implements Initializable {
             txtUangmkn.setDisable(true);
             txtUangTransport.setDisable(true);
 
+            btnSave.setDisable(true);
+            btnClear.setDisable(false);
+            btnCreate.setDisable(false);
+
             dgvGolongan.setOnMouseClicked(mouseEvent -> ClickdgvGolongan());
+            searchGolongan();
 
         }catch (Exception ex){
             System.out.println("Terjadi error saat load data golongan: " + ex);
         }
     }
+    private void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.initModality(Modality.APPLICATION_MODAL);
+        alert.initOwner(dgvGolongan.getScene().getWindow());
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private boolean ValidasiTextBox(String namaText, String gajiText, String masaText, String uangMakanText, String uangTransportText) {
+        namaText = namaText.trim();
+        gajiText = gajiText.trim();
+        masaText = masaText.trim();
+        uangMakanText = uangMakanText.trim();
+        uangTransportText = uangTransportText.trim();
+
+        if (namaText.isEmpty()) {
+            showAlert("Please fill in the name.");
+            return false;
+        }
+
+        if (gajiText.isEmpty()) {
+            showAlert("Salary must be filled in.");
+            return false;
+        }
+
+        if (!gajiText.matches("\\d+")) {
+            showAlert("Salary must be a number.");
+            return false;
+        }
+
+        if (masaText.isEmpty()) {
+            showAlert("Length of service must be filled in.");
+            return false;
+        }
+
+        if (!masaText.matches("\\d+")) {
+            showAlert("Length of service must be a number.");
+            return false;
+        }
+
+        if (uangMakanText.isEmpty()) {
+            showAlert("Meal allowance must be filled in.");
+            return false;
+        }
+
+        if (!uangMakanText.matches("\\d+")) {
+            showAlert("Meal allowance must be a number.");
+            return false;
+        }
+
+        if (uangTransportText.isEmpty()) {
+            showAlert("Transport allowance must be filled in.");
+            return false;
+        }
+
+        if (!uangTransportText.matches("\\d+")) {
+            showAlert("Transport allowance must be a number.");
+            return false;
+        }
+        return true;
+    }
+
     @FXML
     protected void ClickdgvGolongan(){
-        if(!edit){
-            return;
-        }
         Golongan selectedGolongan = dgvGolongan.getSelectionModel().getSelectedItem();
 
         txtGaji.setDisable(false);
@@ -116,6 +189,10 @@ public class CRUDGolongan implements Initializable {
         txtNama.setDisable(false);
         txtUangmkn.setDisable(false);
         txtUangTransport.setDisable(false);
+
+        btnUpdate.setDisable(false);
+        btnDelete.setDisable(false);
+
         if(selectedGolongan != null){
             txtID.setText(selectedGolongan.getID());
             txtNama.setText(selectedGolongan.getNama());
@@ -124,9 +201,10 @@ public class CRUDGolongan implements Initializable {
             txtUangmkn.setText(String.valueOf(selectedGolongan.getUangMakan()));
             txtUangTransport.setText(String.valueOf(selectedGolongan.getUangTransport()));
         }
+        btnRefreshClick();
     }
     @FXML
-    protected void btnSearchClick(){
+    protected void searchGolongan(){
         try {
             String searchKeyword = txtCari.getText();
 
@@ -170,6 +248,8 @@ public class CRUDGolongan implements Initializable {
             txtNama.setDisable(false);
             txtUangmkn.setDisable(false);
             txtUangTransport.setDisable(false);
+
+            btnSave.setDisable(false);
         } catch (Exception ex) {
             System.out.println("Error when generate Group ID: " + ex);
         }
@@ -186,8 +266,8 @@ public class CRUDGolongan implements Initializable {
                 oblist.add(new CRUDGolongan.Golongan(
                         rs.getString("IDGolongan"),
                         rs.getString("nama"),
-                        rs.getInt("masa_kerja"),
                         rs.getInt("gaji"),
+                        rs.getInt("masa_kerja"),
                         rs.getInt("uang_makan"),
                         rs.getInt("uang_transport"),
                         rs.getString("status")
@@ -198,52 +278,66 @@ public class CRUDGolongan implements Initializable {
             Masa.setCellValueFactory(new PropertyValueFactory<>("Masa"));
             UangMakan.setCellValueFactory(new PropertyValueFactory<>("UangMakan"));
             UangTransport.setCellValueFactory(new PropertyValueFactory<>("UangTransport"));
+/*
             Status.setCellValueFactory(new PropertyValueFactory<>("Status"));
+*/
             dgvGolongan.setItems(oblist);
+
+            btnSave.setDisable(true);
+            btnClear.setDisable(false);
+            btnCreate.setDisable(false);
         }catch (Exception ex){
             System.out.println("Error when reload Group data: " + ex);
         }
     }
     @FXML
-    protected void btnUpdateClick(){
-        if(!edit){
-            return;
-        }
-        try {
-            String id = txtID.getText();
-            String nama = txtNama.getText();
-            int gaji = Integer.parseInt(txtGaji.getText());
-            int masaKerja = Integer.parseInt(txtMasa.getText());
-            int uangMakan = Integer.parseInt(txtUangmkn.getText());
-            int uangTransport = Integer.parseInt(txtUangTransport.getText());
+    protected void btnUpdateClick() {
+        String namaText = txtNama.getText();
+        String gajiText = txtGaji.getText();
+        String masaText = txtMasa.getText();
+        String uangMakanText = txtUangmkn.getText();
+        String uangTransportText = txtUangTransport.getText();
 
-            connect = new DBConnect();
-            CallableStatement statement = connect.conn.prepareCall("{CALL sp_updateGolongan(?, ?, ?, ?, ?, ?)}");
-            statement.setString(1, id);
-            statement.setString(2, nama);
-            statement.setInt(3, gaji);
-            statement.setInt(4, masaKerja);
-            statement.setInt(5, uangMakan);
-            statement.setInt(6, uangTransport);
-            statement.execute();
+        if (ValidasiTextBox(namaText, gajiText, masaText, uangMakanText, uangTransportText)) {
+            try {
+                String id = txtID.getText();
+                String nama = txtNama.getText();
+                int gaji = Integer.parseInt(txtGaji.getText());
+                int masaKerja = Integer.parseInt(txtMasa.getText());
+                int uangMakan = Integer.parseInt(txtUangmkn.getText());
+                int uangTransport = Integer.parseInt(txtUangTransport.getText());
 
-            txtID.clear();
-            txtNama.clear();
-            txtGaji.clear();
-            txtMasa.clear();
-            txtUangmkn.clear();
-            txtUangTransport.clear();
+                connect = new DBConnect();
+                CallableStatement statement = connect.conn.prepareCall("{CALL sp_updateGolongan(?, ?, ?, ?, ?, ?)}");
+                statement.setString(1, id);
+                statement.setString(2, nama);
+                statement.setInt(3, gaji);
+                statement.setInt(4, masaKerja);
+                statement.setInt(5, uangMakan);
+                statement.setInt(6, uangTransport);
+                statement.execute();
 
-            txtID.setDisable(true);
-            txtGaji.setDisable(true);
-            txtMasa.setDisable(true);
-            txtNama.setDisable(true);
-            txtUangmkn.setDisable(true);
-            txtUangTransport.setDisable(true);
+                txtID.clear();
+                txtNama.clear();
+                txtGaji.clear();
+                txtMasa.clear();
+                txtUangmkn.clear();
+                txtUangTransport.clear();
 
-            btnRefreshClick();
-        } catch (Exception ex){
-            System.out.println("Error when update Group data: " + ex);
+                txtID.setDisable(true);
+                txtNama.setDisable(true);
+                txtGaji.setDisable(true);
+                txtMasa.setDisable(true);
+                txtUangmkn.setDisable(true);
+                txtUangTransport.setDisable(true);
+
+                btnDelete.setDisable(true);
+                btnUpdate.setDisable(true);
+
+                btnRefreshClick();
+            } catch (Exception ex) {
+                System.out.println("Error when update Group data: " + ex);
+            }
         }
     }
     @FXML
@@ -252,6 +346,8 @@ public class CRUDGolongan implements Initializable {
             String id = txtID.getText();
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.initModality(Modality.APPLICATION_MODAL);
+            alert.initOwner(dgvGolongan.getScene().getWindow());
             alert.setTitle("Confirmation for De-Active");
             alert.setHeaderText("Are you sure to De-Active Tax?");
             alert.setContentText("Select 'OK' to De-Active or 'Cancel' to cancel.");
@@ -274,6 +370,8 @@ public class CRUDGolongan implements Initializable {
                 txtUangmkn.clear();
                 txtUangTransport.clear();
 
+
+
                 txtID.setDisable(true);
                 txtGaji.setDisable(true);
                 txtMasa.setDisable(true);
@@ -283,51 +381,57 @@ public class CRUDGolongan implements Initializable {
 
                 btnRefreshClick();
             }
+            btnDelete.setDisable(true);
+            btnUpdate.setDisable(true);
         } catch (Exception ex){
             System.out.println("Error when De-Active: " + ex);
         }
     }
     @FXML
-    protected void btnEditClick(){
-        edit = true;
-    }
-    @FXML
     protected void btnSaveClick() {
-        try {
-            String nama = txtNama.getText();
-            int gaji = Integer.parseInt(txtGaji.getText());
-            int masaKerja = Integer.parseInt(txtMasa.getText());
-            int uangMakan = Integer.parseInt(txtUangmkn.getText());
-            int uangTransport = Integer.parseInt(txtUangTransport.getText());
-            String status = "Active";
+        String namaText = txtNama.getText();
+        String gajiText = txtGaji.getText();
+        String masaText = txtMasa.getText();
+        String uangMakanText = txtUangmkn.getText();
+        String uangTransportText = txtUangTransport.getText();
 
-            connect = new DBConnect();
-            CallableStatement statement = connect.conn.prepareCall("{CALL sp_insertGolongan(?, ?, ?, ?, ?, ?)}");
-            statement.setString(1, nama);
-            statement.setInt(2, gaji);
-            statement.setInt(3, masaKerja);
-            statement.setInt(4, uangMakan);
-            statement.setInt(5, uangTransport);
-            statement.setString(6, status);
-            statement.execute();
+        if (ValidasiTextBox(namaText, gajiText, masaText, uangMakanText, uangTransportText)) {
+            try {
+                String nama = txtNama.getText();
+                int gaji = Integer.parseInt(txtGaji.getText());
+                int masaKerja = Integer.parseInt(txtMasa.getText());
+                int uangMakan = Integer.parseInt(txtUangmkn.getText());
+                int uangTransport = Integer.parseInt(txtUangTransport.getText());
+                String status = "Active";
 
-            txtID.clear();
-            txtNama.clear();
-            txtGaji.clear();
-            txtMasa.clear();
-            txtUangmkn.clear();
-            txtUangTransport.clear();
+                connect = new DBConnect();
+                CallableStatement statement = connect.conn.prepareCall("{CALL sp_insertGolongan(?, ?, ?, ?, ?, ?)}");
+                statement.setString(1, nama);
+                statement.setInt(2, gaji);
+                statement.setInt(3, masaKerja);
+                statement.setInt(4, uangMakan);
+                statement.setInt(5, uangTransport);
+                statement.setString(6, status);
+                statement.execute();
 
-            txtID.setDisable(true);
-            txtGaji.setDisable(true);
-            txtMasa.setDisable(true);
-            txtNama.setDisable(true);
-            txtUangmkn.setDisable(true);
-            txtUangTransport.setDisable(true);
+                txtID.clear();
+                txtNama.clear();
+                txtGaji.clear();
+                txtMasa.clear();
+                txtUangmkn.clear();
+                txtUangTransport.clear();
 
-            btnRefreshClick();
-        } catch (Exception ex) {
-            System.out.println("Error when save Group data: " + ex);
+                txtID.setDisable(true);
+                txtGaji.setDisable(true);
+                txtMasa.setDisable(true);
+                txtNama.setDisable(true);
+                txtUangmkn.setDisable(true);
+                txtUangTransport.setDisable(true);
+
+                btnRefreshClick();
+            } catch (Exception ex) {
+                System.out.println("Error when save Group data: " + ex);
+            }
         }
     }
     @FXML
@@ -345,6 +449,7 @@ public class CRUDGolongan implements Initializable {
         txtNama.setDisable(true);
         txtUangmkn.setDisable(true);
         txtUangTransport.setDisable(true);
+        btnRefreshClick();
     }
     public static class Golongan{
         private String ID;

@@ -5,6 +5,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
@@ -15,50 +17,120 @@
 
 <AnchorPane prefHeight="732.0" prefWidth="1156.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.manajemen_penggajian.CRUDGolongan">
    <children>
-      <Pane layoutX="245.0" layoutY="33.0" prefHeight="100.0" prefWidth="1156.0" style="-fx-background-color: #B0DFFF;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Pane layoutX="245.0" layoutY="33.0" prefHeight="100.0" prefWidth="1156.0" style="-fx-background-color: #365486;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Text layoutX="44.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MASTER GOLONGAN">
+            <Text fill="WHITE" layoutX="35.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee Level">
                <font>
-                  <Font name="Segoe UI Bold" size="25.0" />
+                  <Font name="Arial Black" size="43.0" />
                </font>
             </Text>
          </children>
       </Pane>
-      <TableView fx:id="dgvGolongan" layoutX="37.0" layoutY="155.0" onMouseClicked="#ClickdgvGolongan" prefHeight="307.0" prefWidth="1082.0">
+      <Pane layoutX="366.0" layoutY="448.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="776.0" fitWidth="1483.0" layoutX="386.0" layoutY="53.0" opacity="0.09" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../image/logo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <TableView fx:id="dgvGolongan" layoutX="37.0" layoutY="155.0" onMouseClicked="#ClickdgvGolongan" prefHeight="346.0" prefWidth="580.0">
          <columns>
-            <TableColumn fx:id="Nama" prefWidth="132.0" text="Group Name" />
-            <TableColumn fx:id="Gaji" prefWidth="171.0" text="Wages" />
-            <TableColumn fx:id="Masa" prefWidth="182.0" text="Years of Service" />
-            <TableColumn fx:id="UangMakan" prefWidth="206.0" text="Meal Allowance" />
-            <TableColumn fx:id="UangTransport" prefWidth="195.0" text="Transport Money" />
-            <TableColumn fx:id="Status" prefWidth="195.0" text="Status" />
+            <TableColumn fx:id="cNum" prefWidth="31.0" text="No." />
+            <TableColumn fx:id="Nama" prefWidth="134.0" text="Employee Level Name" />
+            <TableColumn fx:id="Gaji" prefWidth="77.0" text="Wages" />
+            <TableColumn fx:id="Masa" prefWidth="115.0" text="Years of Service" />
+            <TableColumn fx:id="UangMakan" prefWidth="112.0" text="Meal Allowance" />
+            <TableColumn fx:id="UangTransport" prefWidth="109.0" text="Transport Money" />
          </columns>
       </TableView>
-      <TextField fx:id="txtCari" layoutX="411.0" layoutY="113.0" prefHeight="25.0" prefWidth="317.0" />
-      <Button fx:id="btnCari" layoutX="736.0" layoutY="113.0" mnemonicParsing="false" onAction="#btnSearchClick" stylesheets="@Button.css" text="Search" />
-      <Text layoutX="352.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search" wrappingWidth="52.0">
+      <Label layoutX="638.0" layoutY="111.0" text="Employee Level ID" />
+      <Label layoutX="637.0" layoutY="167.0" text="Employee Level Name" />
+      <Label layoutX="637.0" layoutY="212.0" text="Wages" />
+      <Label layoutX="639.0" layoutY="264.0" text="Years of Service" />
+      <Label layoutX="639.0" layoutY="320.0" text="Meal Allowance" />
+      <Label layoutX="635.0" layoutY="374.0" text="Transport Money" />
+      <TextField fx:id="txtCari" layoutX="37.0" layoutY="110.0" onKeyTyped="#searchGolongan" prefHeight="37.0" prefWidth="548.0" promptText="Search" />
+      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="592.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../image/search.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnDelete" accessibleRole="BUTTON" disable="true" layoutX="1071.0" layoutY="184.0" onAction="#btnDeleteClick" prefHeight="43.0" prefWidth="34.0">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../image/deletee.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btnSave" accessibleRole="BUTTON" disable="true" layoutX="1071.0" layoutY="114.0" onAction="#btnSaveClick" prefHeight="43.0" prefWidth="34.0">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../image/save.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btnUpdate" accessibleRole="BUTTON" disable="true" layoutX="1071.0" layoutY="261.0" onAction="#btnUpdateClick" prefHeight="43.0" prefWidth="34.0">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../image/Update.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <TextField fx:id="txtID" disable="true" layoutX="749.0" layoutY="111.0" prefHeight="35.0" prefWidth="281.0">
          <font>
-            <Font name="Segoe UI" size="15.0" />
+            <Font name="Arial Rounded MT Bold" size="12.0" />
          </font>
-      </Text>
-      <Button fx:id="btnCreate" layoutX="37.0" layoutY="486.0" mnemonicParsing="false" onAction="#btnCreateClick" stylesheets="@Button.css" text="Create" />
-      <Button fx:id="btnRefresh" layoutX="1043.0" layoutY="513.0" mnemonicParsing="false" onAction="#btnRefreshClick" prefHeight="25.0" prefWidth="76.0" stylesheets="@Button.css" text="Refresh" />
-      <Button fx:id="btnUpdate" layoutX="1043.0" layoutY="591.0" mnemonicParsing="false" onAction="#btnUpdateClick" prefHeight="25.0" prefWidth="76.0" stylesheets="@Button.css" text="Update" />
-      <Button fx:id="btnDelete" layoutX="1043.0" layoutY="628.0" mnemonicParsing="false" onAction="#btnDeleteClick" stylesheets="@Button.css" text="De-Active" />
-      <Button fx:id="btnEdit" layoutX="97.0" layoutY="486.0" mnemonicParsing="false" onAction="#btnEditClick" prefHeight="25.0" prefWidth="51.0" stylesheets="@Button.css" text="Edit" />
-      <TextField fx:id="txtID" layoutX="148.0" layoutY="530.0" prefHeight="25.0" prefWidth="284.0" />
-      <TextField fx:id="txtNama" layoutX="148.0" layoutY="566.0" prefHeight="25.0" prefWidth="284.0" />
-      <TextField fx:id="txtGaji" layoutX="148.0" layoutY="605.0" prefHeight="25.0" prefWidth="284.0" />
-      <Label layoutX="37.0" layoutY="531.0" text="Group ID" />
-      <Label layoutX="37.0" layoutY="567.0" text="Group Name" />
-      <Label layoutX="37.0" layoutY="606.0" text="Wages" />
-      <Button fx:id="btnSave" layoutX="1043.0" layoutY="551.0" mnemonicParsing="false" onAction="#btnSaveClick" prefHeight="25.0" prefWidth="76.0" stylesheets="@Button.css" text="Save" />
-      <Button fx:id="btnClear" layoutX="157.0" layoutY="486.0" mnemonicParsing="false" onAction="#btnClearClick" prefHeight="25.0" prefWidth="51.0" stylesheets="@Button.css" text="Clear" />
-      <TextField fx:id="txtMasa" layoutX="148.0" layoutY="648.0" prefHeight="25.0" prefWidth="284.0" />
-      <Label layoutX="37.0" layoutY="649.0" text="Years of Service" />
-      <TextField fx:id="txtUangmkn" layoutX="560.0" layoutY="529.0" prefHeight="25.0" prefWidth="284.0" />
-      <TextField fx:id="txtUangTransport" layoutX="560.0" layoutY="565.0" prefHeight="25.0" prefWidth="284.0" />
-      <Label layoutX="449.0" layoutY="530.0" text="Meal Allowance" />
-      <Label layoutX="449.0" layoutY="566.0" text="Transport Money" />
+      </TextField>
+      <TextField fx:id="txtNama" disable="true" layoutX="749.0" layoutY="158.0" prefHeight="35.0" prefWidth="281.0">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="12.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtGaji" disable="true" layoutX="749.0" layoutY="203.0" prefHeight="35.0" prefWidth="281.0">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="12.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtMasa" disable="true" layoutX="749.0" layoutY="255.0" prefHeight="35.0" prefWidth="281.0">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="12.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtUangTransport" disable="true" layoutX="749.0" layoutY="365.0" prefHeight="35.0" prefWidth="281.0">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="12.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtUangmkn" disable="true" layoutX="749.0" layoutY="311.0" prefHeight="35.0" prefWidth="281.0">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="12.0" />
+         </font>
+      </TextField>
+      <Button fx:id="btnClear" accessibleRole="BUTTON" layoutX="541.0" layoutY="509.0" onAction="#btnClearClick" prefHeight="28.0" prefWidth="35.0">
+         <graphic>
+            <ImageView fitHeight="19.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../image/deactive.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btnCreate" layoutX="580.0" layoutY="509.0" onAction="#btnCreateClick" prefHeight="17.0" prefWidth="25.0">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../image/add.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>
