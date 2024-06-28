@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="bd88bd93-dbab-4d95-bd25-9ac949295c34" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/CRUDTunjangan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/CRUDTunjangan.java" afterDir="false" />
@@ -13,6 +14,19 @@
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/CRUDAsuransi.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/CRUDAsuransi.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/CRUDTunjangan.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/CRUDTunjangan.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/FormDashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/FormDashboard.fxml" afterDir="false" />
+=======
+    <list default="true" id="bd88bd93-dbab-4d95-bd25-9ac949295c34" name="Changes" comment="Fachri">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/CRUDKaryawan.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/CRUDKaryawan.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/CRUDTunjangan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/CRUDTunjangan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/DBConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/DBConnect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/FormDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/FormDashboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/CRUDTunjangan.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/CRUDTunjangan.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/FormDashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/FormDashboard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/Loading.fxml" beforeDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,11 +49,15 @@
     &quot;associatedIndex&quot;: 8
     }</component>
   <component name="ProjectId" id="2hl6OvSNEBIA2gRGhL4e5NFCGmK" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
+<<<<<<< Updated upstream
     &quot;keyToString&quot;: {
     &quot;Application.DBConnect.executor&quot;: &quot;Run&quot;,
     &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
@@ -106,6 +124,24 @@
       </set>
     </attachedChunks>
   </component>
+=======
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;D:/Belajar Coding/Semester 2/Pemrograman 3/Manajemen-Penggajian-PRG3/Manajemen_Penggajian/src/main/java/com/example/manajemen_penggajian&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Belajar Coding/Semester 2/Pemrograman 3/Manajemen-Penggajian-PRG3/Manajemen_Penggajian/src/main/sqljdbc4.jar&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="com.example.manajemen_penggajian" />
+    </key>
+  </component>
+>>>>>>> Stashed changes
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -121,13 +157,29 @@
       <workItem from="1719146299038" duration="3000" />
       <workItem from="1719146775571" duration="67000" />
     </task>
+    <task id="LOCAL-00001" summary="Fachri">
+      <option name="closed" value="true" />
+      <created>1718954371809</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1718954371809</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
+<<<<<<< Updated upstream
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+=======
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Fachri" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fachri" />
+>>>>>>> Stashed changes
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Manajemen_Penggajian$HelloApplication.ic" NAME="HelloApplication Coverage Results" MODIFIED="1718872127774" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Manajemen_Penggajian$HelloApplication.ic" NAME="HelloApplication Coverage Results" MODIFIED="1719040561876" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.example.manajemen_penggajian.*</FILTER>
     </SUITE>
   </component>

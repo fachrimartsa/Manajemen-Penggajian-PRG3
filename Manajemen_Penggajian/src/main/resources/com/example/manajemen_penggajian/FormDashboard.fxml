@@ -57,7 +57,11 @@
       </Button>
       <VBox fx:id="dropdownBox" layoutX="67.0" layoutY="262.0" managed="false" prefHeight="73.0" prefWidth="160.0" visible="false">
          <children>
+<<<<<<< Updated upstream
             <Button fx:id="btnKaryawan" mnemonicParsing="false" prefHeight="28.0" prefWidth="123.0" style="-fx-background-color: #CEDEF8;" text="Karyawan" textFill="#312e5f">
+=======
+            <Button fx:id="btnKaryawan" mnemonicParsing="false" onAction="#btnKaryawanClick" prefHeight="28.0" prefWidth="123.0" style="-fx-background-color: #CEDEF8;" text="Karyawan" textFill="#312e5f">
+>>>>>>> Stashed changes
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>

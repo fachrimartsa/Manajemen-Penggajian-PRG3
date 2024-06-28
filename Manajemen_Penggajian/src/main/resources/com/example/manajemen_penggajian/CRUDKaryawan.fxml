@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="732.0" prefWidth="1156.0" style="-fx-background-color: #E7EEFA;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.manajemen_penggajian.CRUDKaryawan">
+   <children>
+      <Pane layoutX="105.0" layoutY="529.0" opacity="0.79" prefHeight="197.0" prefWidth="767.0" style="-fx-background-color: #365486; -fx-background-radius: 8;">
+         <children>
+            <Button fx:id="btnCancel" disable="true" layoutX="204.0" layoutY="159.0" mnemonicParsing="false" onAction="#btnCancelClick" prefHeight="32.0" prefWidth="356.0" text="Cancel" textFill="#216fbc">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+         </children></Pane>
+      <Pane prefHeight="118.0" prefWidth="1172.0" style="-fx-background-color: #365486;">
+         <children>
+            <Label layoutX="256.0" layoutY="15.0" text="MASTER Karyawan" textFill="#dcf2f1">
+               <font>
+                  <Font name="Stencil" size="71.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <TableView fx:id="viewKaryawan" layoutX="1.0" layoutY="182.0" onMouseClicked="#rowTableClick" prefHeight="286.0" prefWidth="1170.0">
+        <columns>
+          <TableColumn fx:id="cID" prefWidth="96.79998475313187" text="ID Karyawan" />
+          <TableColumn fx:id="cNama" prefWidth="127.19998168945312" text="Nama Karyawan" />
+            <TableColumn fx:id="cEmail" prefWidth="116.80006408691406" text="Email Karyawan" />
+            <TableColumn fx:id="cTglLahir" prefWidth="93.60000610351562" text="Tanggal Lahir " />
+            <TableColumn fx:id="cTglMasuk" minWidth="0.0" prefWidth="96.79998779296875" text="Tanggal Masuk" />
+            <TableColumn fx:id="cIdJabatan" minWidth="0.79998779296875" prefWidth="82.4000244140625" text="ID Jabatan" />
+            <TableColumn fx:id="cIdDivisi" prefWidth="80.7999267578125" text="ID Divisi" />
+            <TableColumn fx:id="cIdGolongan" prefWidth="88.0" text="ID Golongan" />
+            <TableColumn fx:id="cIdShift" prefWidth="98.4000244140625" text="ID Shift" />
+            <TableColumn fx:id="cNoRekening" prefWidth="92.7999267578125" text="No Rekening" />
+            <TableColumn fx:id="cStatus" prefWidth="84.80010986328125" text="Status " />
+            <TableColumn fx:id="cJnsKaryawan" prefWidth="107.20004882812509" text="Jenis Karyawan" />
+        </columns>
+      </TableView>
+      <TextField fx:id="tbID" disable="true" layoutX="122.0" layoutY="551.0" prefHeight="32.0" prefWidth="165.0" />
+      <TextField fx:id="tbNama" disable="true" layoutX="122.0" layoutY="600.0" prefHeight="32.0" prefWidth="165.0" promptText="Name" />
+      <TextField fx:id="tbTglLahir" disable="true" layoutX="312.0" layoutY="547.0" prefHeight="32.0" prefWidth="165.0" promptText="Tanggal Lahir" />
+      <TextField fx:id="tbEmail" disable="true" layoutX="122.0" layoutY="651.0" prefHeight="32.0" prefWidth="165.0" promptText="Email" />
+      <TextField fx:id="tbTglMasuk" disable="true" layoutX="312.0" layoutY="600.0" prefHeight="32.0" prefWidth="165.0" promptText="Tanggal Masuk" />
+      <ComboBox fx:id="cbIdDivisi" disable="true" layoutX="312.0" layoutY="651.0" prefHeight="32.0" prefWidth="166.0" promptText="ID Divisi" />
+      <ComboBox fx:id="cbIdGolongan" disable="true" layoutX="499.0" layoutY="548.0" prefHeight="32.0" prefWidth="166.0" promptText="ID Golongan" />
+      <ComboBox fx:id="cbIdJabatan" disable="true" layoutX="499.0" layoutY="597.0" prefHeight="32.0" prefWidth="166.0" promptText="ID Jabatan" />
+      <ComboBox fx:id="cbIdShift" disable="true" layoutX="499.0" layoutY="648.0" prefHeight="32.0" prefWidth="166.0" promptText="ID Shift" />
+      <TextField fx:id="tbNoRekening" disable="true" layoutX="688.0" layoutY="548.0" prefHeight="32.0" prefWidth="165.0" promptText="No Rekening" />
+      <TextField fx:id="tbStatus" disable="true" layoutX="688.0" layoutY="597.0" prefHeight="32.0" prefWidth="165.0" />
+      <ComboBox fx:id="cbJnsKaryawan" disable="true" layoutX="687.0" layoutY="648.0" prefHeight="32.0" prefWidth="166.0" promptText="Jenis Karyawan" />
+      <Button fx:id="btnEdit" layoutX="122.0" layoutY="485.0" mnemonicParsing="false" onAction="#btnEditClick" prefHeight="32.0" prefWidth="129.0" style="-fx-background-color: #5872F8;" text="Edit" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Bold" size="15.0" />
+         </font></Button>
+      <Button fx:id="btnCreate" layoutX="723.0" layoutY="485.0" mnemonicParsing="false" onAction="#btnCreateClick" prefHeight="32.0" prefWidth="129.0" style="-fx-background-color: #2CBD1A;" text="Create" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Bold" size="15.0" />
+         </font></Button>
+      <Button fx:id="btnSave" disable="true" layoutX="929.0" layoutY="551.0" mnemonicParsing="false" onAction="#btnSaveClick" prefHeight="32.0" prefWidth="129.0" style="-fx-background-color: #2CBD1A;" text="Save" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Bold" size="16.0" />
+         </font></Button>
+      <Button fx:id="btnUpdate" disable="true" layoutX="929.0" layoutY="600.0" mnemonicParsing="false" onAction="#btnUpdateClick" prefHeight="32.0" prefWidth="129.0" style="-fx-background-color: #5872F8;" text="Update" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Bold" size="16.0" />
+         </font></Button>
+      <Button fx:id="btnDelete" disable="true" layoutX="929.0" layoutY="652.0" mnemonicParsing="false" onAction="#btnDeleteClick" prefHeight="32.0" prefWidth="129.0" style="-fx-background-color: #D51C1C;" text="Delete" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Bold" size="16.0" />
+         </font></Button>
+      <ImageView fx:id="btnCari" fitHeight="38.0" fitWidth="43.0" layoutX="7.0" layoutY="133.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../image/find.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="tbCari" layoutX="55.0" layoutY="138.0" prefHeight="32.0" prefWidth="294.0" />
+   </children>
+</AnchorPane>
