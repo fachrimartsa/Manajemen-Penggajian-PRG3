@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -15,12 +14,6 @@
    <children>
       <Pane layoutX="21.0" layoutY="162.0" prefHeight="532.0" prefWidth="335.0" style="-fx-background-color: #123456;">
          <children>
-            <ComboBox fx:id="cbIDGolongan" disable="true" layoutX="20.0" layoutY="229.0" prefHeight="36.0" prefWidth="291.0" />
-            <Label layoutX="29.0" layoutY="198.0" text="ID Golongan" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
             <TextField fx:id="txtJAsuransi" disable="true" layoutX="21.0" layoutY="152.0" prefHeight="36.0" prefWidth="289.0" />
             <Label layoutX="31.0" layoutY="119.0" text="Jenis Asuransi" textFill="WHITE">
                <font>
@@ -34,8 +27,8 @@
                </font>
             </Label>
             <Button fx:id="btnCreate" layoutX="238.0" layoutY="15.0" mnemonicParsing="false" onAction="#onBtnCreateClick" prefHeight="38.0" prefWidth="72.0" text="-|-" />
-            <TextField fx:id="txtStatus" editable="false" layoutX="20.0" layoutY="301.0" opacity="0.45" prefHeight="42.0" prefWidth="291.0" />
-            <Label layoutX="30.0" layoutY="272.0" prefHeight="27.0" prefWidth="63.0" text="Status" textFill="WHITE">
+            <TextField fx:id="txtStatus" editable="false" layoutX="20.0" layoutY="227.0" opacity="0.45" prefHeight="42.0" prefWidth="291.0" />
+            <Label layoutX="30.0" layoutY="198.0" prefHeight="27.0" prefWidth="63.0" text="Status" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -64,7 +57,6 @@
         <columns>
           <TableColumn fx:id="tcIDAsuransi" prefWidth="185.5999755859375" text="ID Asuransi" />
           <TableColumn fx:id="tcJAsuransi" minWidth="9.60003662109375" prefWidth="223.2000732421875" text="Jenis Asuransi" />
-            <TableColumn fx:id="tcIDGolongan" minWidth="0.0" prefWidth="182.933349609375" text="ID Golongan" />
             <TableColumn fx:id="tcStatus" minWidth="0.0" prefWidth="176.79986572265625" text="Status" />
         </columns>
       </TableView>

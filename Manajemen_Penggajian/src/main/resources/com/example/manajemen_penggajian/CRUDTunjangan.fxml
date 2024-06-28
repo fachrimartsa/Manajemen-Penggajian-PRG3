@@ -11,34 +11,31 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="732.0" prefWidth="1156.0" style="-fx-background-color: #E7EEFA;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.manajemen_penggajian.CRUDTunjangan">
+<AnchorPane prefHeight="732.0" prefWidth="1156.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.manajemen_penggajian.CRUDTunjangan">
    <children>
+      <ImageView fitHeight="741.0" fitWidth="866.0" layoutX="186.0" opacity="0.1" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../image/logo.png" />
+         </image>
+      </ImageView>
       <Pane prefHeight="118.0" prefWidth="1156.0" style="-fx-background-color: #365486;">
          <children>
-            <Label layoutX="256.0" layoutY="15.0" text="MASTER TUNJANGAN" textFill="#dcf2f1">
+            <Label layoutX="106.0" layoutY="15.0" text="TUNJANGAN" textFill="#dcf2f1">
                <font>
                   <Font name="Stencil" size="71.0" />
                </font>
             </Label>
          </children>
       </Pane>
-<<<<<<< Updated upstream
       <TableView fx:id="viewTunjangan" layoutX="63.0" layoutY="221.0" onMouseClicked="#handleTableDoubleClick" prefHeight="434.0" prefWidth="454.0">
         <columns>
           <TableColumn fx:id="cIDTunjangan" prefWidth="130.4000015258789" text="ID Tunjangan" />
           <TableColumn fx:id="cNamaTunjangan" prefWidth="168.00001525878906" text="Nama Tunjangan" />
             <TableColumn fx:id="cStatusTunjangan" minWidth="0.0" prefWidth="155.20001220703125" text="Status Tunjangan" />
-=======
-      <TableView fx:id="viewTunjangan" layoutX="63.0" layoutY="221.0" onMouseClicked="#rowTableClick" prefHeight="434.0" prefWidth="454.0">
-        <columns>
-          <TableColumn fx:id="cIDTunjangan" prefWidth="141.59997177124023" text="ID Tunjangan" />
-          <TableColumn fx:id="cNamaTunjangan" prefWidth="168.00001525878906" text="Nama Tunjangan" />
-            <TableColumn fx:id="cStatusTunjangan" minWidth="0.0" prefWidth="147.20001220703125" text="Status Tunjangan" />
->>>>>>> Stashed changes
         </columns>
       </TableView>
-      <TextField fx:id="tbSearch" layoutX="104.0" layoutY="184.0" prefHeight="26.0" prefWidth="272.0" style="-fx-background-radius: 10;" />
-      <ImageView fx:id="btnSearch" fitHeight="38.0" fitWidth="48.0" layoutX="63.0" layoutY="178.0" onMouseClicked="#btnSearchClick" pickOnBounds="true" preserveRatio="true">
+      <TextField fx:id="tbSearch" layoutX="104.0" layoutY="184.0" onKeyTyped="#btnSearchClick" prefHeight="26.0" prefWidth="262.0" style="-fx-background-radius: 10;" />
+      <ImageView fx:id="btnSearch" fitHeight="38.0" fitWidth="48.0" layoutX="63.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../image/find.png" />
          </image>
@@ -46,11 +43,7 @@
       <Pane layoutX="652.0" layoutY="221.0" opacity="0.86" prefHeight="434.0" prefWidth="418.0" style="-fx-background-color: #365486; -fx-background-radius: 13;">
          <children>
             <TextField fx:id="tbID" disable="true" layoutX="20.0" layoutY="77.0" prefHeight="37.0" prefWidth="195.0" style="-fx-background-radius: 10;" />
-<<<<<<< Updated upstream
             <Button fx:id="btnUpdate" disable="true" layoutX="158.0" layoutY="336.0" mnemonicParsing="false" onMouseClicked="#btnUpdateClick" prefHeight="37.0" prefWidth="111.0" style="-fx-background-radius: 10; -fx-background-color: #5872F8;" text="Update" textFill="WHITE">
-=======
-            <Button fx:id="btnUpdate" disable="true" layoutX="158.0" layoutY="336.0" mnemonicParsing="false" onAction="#btnUpdateClick" prefHeight="37.0" prefWidth="111.0" style="-fx-background-radius: 10; -fx-background-color: #5872F8;" text="Update" textFill="WHITE">
->>>>>>> Stashed changes
                <font>
                   <Font name="Segoe UI Bold" size="19.0" />
                </font>
@@ -82,32 +75,24 @@
                   <Image url="@../../../image/online-learning_4393885.png" />
                </image>
             </ImageView>
-<<<<<<< Updated upstream
             <Button fx:id="btnDelete" disable="true" layoutX="29.0" layoutY="336.0" mnemonicParsing="false" onMouseClicked="#btnDeleteClick" prefHeight="37.0" prefWidth="111.0" style="-fx-background-radius: 10; -fx-background-color: #D51C1C;" text="Delete" textFill="WHITE">
-=======
-            <Button fx:id="btnDelete" disable="true" layoutX="29.0" layoutY="336.0" mnemonicParsing="false" onAction="#btnDeleteClick" prefHeight="37.0" prefWidth="111.0" style="-fx-background-radius: 10; -fx-background-color: #D51C1C;" text="Delete" textFill="WHITE">
->>>>>>> Stashed changes
                <font>
                   <Font name="Segoe UI Bold" size="18.0" />
                </font>
             </Button>
-<<<<<<< Updated upstream
             <Button fx:id="btnCancel" disable="true" layoutX="29.0" layoutY="383.0" mnemonicParsing="false" onMouseClicked="#btnCancelClick" prefHeight="37.0" prefWidth="367.0" style="-fx-background-radius: 10;" text="Cancel">
-=======
-            <Button fx:id="btnCancel" disable="true" layoutX="29.0" layoutY="383.0" mnemonicParsing="false" onAction="#btnCancelClick" prefHeight="37.0" prefWidth="367.0" style="-fx-background-radius: 10;" text="Cancel">
->>>>>>> Stashed changes
                <font>
                   <Font name="Segoe UI Bold" size="18.0" />
                </font>
             </Button>
          </children>
       </Pane>
-      <Button fx:id="btnCreate" layoutX="922.0" layoutY="171.0" mnemonicParsing="false" onAction="#btnCreateClick" prefHeight="38.0" prefWidth="139.0" style="-fx-background-color: #2CBD1A;" text="Create" textFill="#dcf2f1">
+      <Button fx:id="btnCreate" layoutX="922.0" layoutY="171.0" mnemonicParsing="false" onAction="#btnCreateClick" prefHeight="38.0" prefWidth="139.0" style="-fx-background-color: #2CBD1A; -fx-background-radius: 10;" text="Create" textFill="#dcf2f1">
          <font>
             <Font name="Segoe UI Bold" size="17.0" />
          </font>
       </Button>
-      <Button fx:id="btnEdit" layoutX="658.0" layoutY="178.0" mnemonicParsing="false" onAction="#btnEditClick" prefHeight="38.0" prefWidth="139.0" style="-fx-background-color: #5872F8;" text="Edit" textFill="#dcf2f1">
+      <Button fx:id="btnEdit" layoutX="663.0" layoutY="171.0" mnemonicParsing="false" onAction="#btnEditClick" prefHeight="38.0" prefWidth="139.0" style="-fx-background-color: #5872F8; -fx-background-radius: 10;" text="Edit" textFill="#dcf2f1">
          <font>
             <Font name="Segoe UI Bold" size="17.0" />
          </font>

@@ -28,8 +28,6 @@ public class CRUDAsuransi {
     @FXML
     private TableColumn<Asuransi, String> tcJAsuransi;
     @FXML
-    private TableColumn<Asuransi, String> tcIDGolongan;
-    @FXML
     private TableColumn<Asuransi, String> tcStatus;
 
 
@@ -64,7 +62,6 @@ public class CRUDAsuransi {
     @FXML
     public void initialize() {
         // Inisialisasi ComboBox dengan data dari database
-        loadDataGolongan();
         loadviewtable();
     }
 
@@ -75,7 +72,6 @@ public class CRUDAsuransi {
     protected void onBtnCreateClick(){
         txtIDAsuransi.setDisable(false);
         txtJAsuransi.setDisable(false);
-        cbIDGolongan.setDisable(false);
         txtIDAsuransi.setText(autoIDAsuransi());
 
     }
@@ -89,7 +85,6 @@ public class CRUDAsuransi {
     protected void onBtnSaveClick() {
         IDAsuransi = txtIDAsuransi.getText();
         JAsuransi = txtJAsuransi.getText();
-        IDGolongan = cbIDGolongan.getValue();
         status = "Active";
 
         try {
@@ -107,11 +102,10 @@ public class CRUDAsuransi {
                 JOptionPane.showMessageDialog(null, "Data Same, Data fail to save");
             } else {
                 // Membuat koneksi dan callable statement untuk menyimpan data baru
-                CONAS.pstat = CONAS.conn.prepareCall("{call sp_CreateAsuransi(?, ?, ?, ?)}");
+                CONAS.pstat = CONAS.conn.prepareCall("{call sp_CreateAsuransi(?, ?, ?)}");
                 CONAS.pstat.setString(1, IDAsuransi);
                 CONAS.pstat.setString(2, txtJAsuransi.getText());
-                CONAS.pstat.setString(3, IDGolongan.getIDGolongan()); // Mengambil ID Golongan dari objek Golongan
-                CONAS.pstat.setString(4, status);
+                CONAS.pstat.setString(3, status);
 
                 // Eksekusi stored procedure
                 CONAS.pstat.executeUpdate();
@@ -133,7 +127,6 @@ public class CRUDAsuransi {
     protected void onBtnClearClick(){
         txtIDAsuransi.setText("");
         txtJAsuransi.setText("");
-        cbIDGolongan.setValue(null);
         txtStatus.setText("");
     }
 
@@ -151,7 +144,6 @@ public class CRUDAsuransi {
                 Aslist.add(new Asuransi(
                         connection.result.getString("IDAsuransi"),
                         connection.result.getString("Jenis_Asuransi"),
-                        connection.result.getString("IDGolongan"),
                         connection.result.getString("status"))
                 );
             }
@@ -167,32 +159,8 @@ public class CRUDAsuransi {
         // Menampilkan data ke dalam TableView
         tcIDAsuransi.setCellValueFactory(new PropertyValueFactory<>("IDAsu"));
         tcJAsuransi.setCellValueFactory(new PropertyValueFactory<>("JAsu"));
-        tcIDGolongan.setCellValueFactory(new PropertyValueFactory<>("IDGo"));
         tcStatus.setCellValueFactory(new PropertyValueFactory<>("stat"));
         tbAsuransi.setItems(Aslist);
-    }
-
-
-    //method COMBO BOX IDGOLONGAN
-    private void loadDataGolongan() {
-        String query = "SELECT IDGolongan, nama FROM golongan";
-
-        try (Connection connection = new DBConnect().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(query);
-             ResultSet resultSet = preparedStatement.executeQuery()) {
-
-            ObservableList<Golongan> observableGolonganNames = FXCollections.observableArrayList();
-            while (resultSet.next()) {
-                String idGolongan = resultSet.getString("IDGolongan");
-                String nama = resultSet.getString("nama");
-
-                Golongan golongan = new Golongan(idGolongan, nama);
-                observableGolonganNames.add(golongan);
-            }
-            cbIDGolongan.setItems(observableGolonganNames); // Mengatur items ComboBox dengan nama-nama Golongan
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     private String autoIDAsuransi() {
@@ -229,11 +197,10 @@ public class CRUDAsuransi {
     //======================================= ENCAPSULATED ================================
 
     public class Asuransi {
-        String IDAsu, JAsu, IDGo, stat;
-        public Asuransi(String IDAsu, String JAsu, String IDGo, String stat) {
+        String IDAsu, JAsu, stat;
+        public Asuransi(String IDAsu, String JAsu, String stat) {
             this.IDAsu = IDAsu;
             this.JAsu = JAsu;
-            this.IDGo = IDGo;
             this.stat = stat;
         }
         public String getIDAsu() {
@@ -241,9 +208,6 @@ public class CRUDAsuransi {
         }
         public String getJAsu() {
             return JAsu;
-        }
-        public String getIDGo() {
-            return IDGo;
         }
         public String getStat() {
             return stat;

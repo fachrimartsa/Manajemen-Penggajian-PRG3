@@ -47,7 +47,7 @@
             <Font name="Stencil" size="20.0" />
          </font>
       </Button>
-      <Button fx:id="btnLaporan" layoutX="47.0" layoutY="365.0" mnemonicParsing="false" onAction="#toggleDropdown3" prefHeight="44.0" prefWidth="170.0" style="-fx-background-color: #EDF2FC;" text="Laporan" textFill="#606384">
+      <Button fx:id="btnLaporan" layoutX="47.0" layoutY="367.0" mnemonicParsing="false" onAction="#toggleDropdown3" prefHeight="44.0" prefWidth="170.0" style="-fx-background-color: #EDF2FC;" text="Laporan" textFill="#606384">
          <font>
             <Font name="Stencil" size="20.0" />
          </font>
@@ -57,11 +57,7 @@
       </Button>
       <VBox fx:id="dropdownBox" layoutX="67.0" layoutY="262.0" managed="false" prefHeight="73.0" prefWidth="160.0" visible="false">
          <children>
-<<<<<<< Updated upstream
-            <Button fx:id="btnKaryawan" mnemonicParsing="false" prefHeight="28.0" prefWidth="123.0" style="-fx-background-color: #CEDEF8;" text="Karyawan" textFill="#312e5f">
-=======
             <Button fx:id="btnKaryawan" mnemonicParsing="false" onAction="#btnKaryawanClick" prefHeight="28.0" prefWidth="123.0" style="-fx-background-color: #CEDEF8;" text="Karyawan" textFill="#312e5f">
->>>>>>> Stashed changes
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>

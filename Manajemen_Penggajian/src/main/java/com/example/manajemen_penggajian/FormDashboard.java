@@ -27,7 +27,6 @@ public class FormDashboard {
     @FXML
     private VBox dropdownBox3;
     @FXML
-<<<<<<< Updated upstream
     private Button btnTunjangan;
     @FXML
     private Button btnAsuransi;
@@ -43,9 +42,6 @@ public class FormDashboard {
     private Button btnPajak;
     @FXML
     private Button btnKaryawan;
-=======
-    private Button btnTunjangan,btnKaryawan;
->>>>>>> Stashed changes
 
     @FXML
     public void toggleDropdown() {
@@ -89,7 +85,6 @@ public class FormDashboard {
         }
     }
 
-<<<<<<< Updated upstream
     public void btnAsuransiClick() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/manajemen_penggajian/CRUDAsuransi.fxml"));
@@ -151,14 +146,17 @@ public class FormDashboard {
             Node crudShift = loader.load();
             mainPanel.getChildren().clear();
             mainPanel.getChildren().add(crudShift);
-=======
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void btnKaryawanClick() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/manajemen_penggajian/CRUDKaryawan.fxml"));
-            Node crudKaryawan = loader.load();
+            Node crudShift = loader.load();
             mainPanel.getChildren().clear();
-            mainPanel.getChildren().add(crudKaryawan);
->>>>>>> Stashed changes
+            mainPanel.getChildren().add(crudShift);
         } catch (IOException e) {
             e.printStackTrace();
         }

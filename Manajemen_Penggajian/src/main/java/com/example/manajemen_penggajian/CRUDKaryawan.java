@@ -3,127 +3,75 @@ package com.example.manajemen_penggajian;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-import java.net.URL;
-import java.sql.CallableStatement;
+import java.sql.Date;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
-public class CRUDKaryawan implements Initializable {
+public class CRUDKaryawan {
     @FXML
-    private Button btnEdit, btnCreate, btnCancel;
+    private Button btnEdit, btnCreate, btnSave, btnUpdate, btnDelete, btnCancel;
     @FXML
-    private Button btnSave;
+    private TextField tbSearch, tbId, tbNama, tbEmail, tbPassword, tbNoRekening;
     @FXML
-    private Button btnUpdate;
-    @FXML
-    private Button btnDelete;
-    @FXML
-    private TextField tbID;
-    @FXML
-    private TextField tbNama;
-    @FXML
-    private TextField tbEmail;
-    @FXML
-    private TextField tbTglLahir;
-    @FXML
-    private TextField tbTglMasuk;
-    @FXML
-    private ComboBox cbIdJabatan;
-    @FXML
-    private ComboBox cbIdDivisi;
-    @FXML
-    private ComboBox cbIdGolongan;
-    @FXML
-    private ComboBox cbIdShift;
-    @FXML
-    private TextField tbNoRekening;
-    @FXML
-    private TextField tbStatus;
+    private DatePicker tbTanggalLahir, tbTanggalMasuk;
     @FXML
     private ComboBox cbJnsKaryawan;
     @FXML
-    private TextField tbCari;
+    private ComboBox<Jabatan> cbJabatan;
     @FXML
-    private ImageView btnCari;
+    private ComboBox<Divisi> cbDivisi;
+    @FXML
+    private ComboBox<Golongan> cbGolongan;
+    @FXML
+    private ComboBox<Shift> cbShift;
     @FXML
     private TableView<CRUDKaryawan> viewKaryawan;
     @FXML
-    private TableColumn<CRUDKaryawan, String> cID , cNama, cEmail, cTglLahir, cTglMasuk, cIdJabatan, cIdDivisi, cIdGolongan,
-            cIdShift, cNoRekening, cStatus, cJnsKaryawan;
+    private TableColumn<CRUDTunjangan, String> columnNama;
+    @FXML
+    private TableColumn<CRUDTunjangan, String> columnEmail;
+    @FXML
+    private TableColumn<CRUDTunjangan, String> columnPass;
+    @FXML
+    private TableColumn<CRUDTunjangan, String> columnTglLahir;
+    @FXML
+    private TableColumn<CRUDTunjangan, String> columnTglMasuk;
+    @FXML
+    private TableColumn<CRUDTunjangan, String> columnNoRekening;
+    @FXML
+    private TableColumn<CRUDTunjangan, String> columnDivisi;
+    @FXML
+    private TableColumn<CRUDTunjangan, String> columnJabatan;
+    @FXML
+    private TableColumn<CRUDTunjangan, String> columnGolongan;
+    @FXML
+    private TableColumn<CRUDTunjangan, String> columnShift;
+    @FXML
+    private TableColumn<CRUDTunjangan, String> columnJnsKaryawan;
+
+    private ObservableList<CRUDKaryawan> oblist = FXCollections.observableArrayList();
+
 
     DBConnect connect = new DBConnect();
-    private String IDKaryawan, nama, email, tanggal_lahir, tanggal_masuk, IDJabatan, IDDivisi, IDGolongan, IDShift,
-            no_rekening, status, jenis_karyawan;
 
-    @FXML
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        ObservableList<CRUDKaryawan> oblist = FXCollections.observableArrayList();
-        try {
-            connect.stat = connect.conn.createStatement();
-            String query = "SELECT * FROM Karyawan";
-            connect.result = connect.stat.executeQuery(query);
-
-            while (connect.result.next()) {
-                oblist.add(new CRUDKaryawan(
-                        connect.result.getString("IDKaryawan"),
-                        connect.result.getString("nama"),
-                        connect.result.getString("email"),
-                        connect.result.getString("tanggal_lahir"),
-                        connect.result.getString("tanggal_masuk"),
-                        connect.result.getString("IDJabatan"),
-                        connect.result.getString("IDDivisi"),
-                        connect.result.getString("IDGolongan"),
-                        connect.result.getString("IDShift"),
-                        connect.result.getString("no_rekening"),
-                        connect.result.getString("status"),
-                        connect.result.getString("jenis_karyawan")));
-            };
-            connect.stat.close();
-            connect.result.close();
-        } catch (Exception exception) {
-            System.out.println("Error When Load Data" + exception);
-        }
-        cID.setCellValueFactory(new PropertyValueFactory<>("IDKaryawan"));
-        cNama.setCellValueFactory(new PropertyValueFactory<>("nama"));
-        cEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-        cTglLahir.setCellValueFactory(new PropertyValueFactory<>("tanggal_lahir"));
-        cTglMasuk.setCellValueFactory(new PropertyValueFactory<>("tanggal_masuk"));
-        cIdJabatan.setCellValueFactory(new PropertyValueFactory<>("IDJabatan"));
-        cIdDivisi.setCellValueFactory(new PropertyValueFactory<>("IDDivisi"));
-        cIdGolongan.setCellValueFactory(new PropertyValueFactory<>("IDGolongan"));
-        cIdShift.setCellValueFactory(new PropertyValueFactory<>("IDShift"));
-        cNoRekening.setCellValueFactory(new PropertyValueFactory<>("no_rekening"));
-        cStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-        cJnsKaryawan.setCellValueFactory(new PropertyValueFactory<>("jenis_karyawan"));
-        viewKaryawan.setItems(oblist);
-
-        cbJnsKaryawan.getItems().addAll("Tetap","Kontrak");
-    }
-
-    public CRUDKaryawan() {
-    }
-
-    public CRUDKaryawan(String IDKaryawan, String nama, String email,String tanggal_lahir,String tanggal_masuk,String IDJabatan,String IDDivisi,String IDGolongan,String IDShift,
-                          String no_rekening,String status,String jenis_karyawan) {
-        this.IDKaryawan = IDKaryawan;
-        this.nama = nama;
-        this.email = email;
-        this.tanggal_lahir = tanggal_lahir;
-        this.tanggal_masuk = tanggal_masuk;
-        this.IDJabatan = IDJabatan;
-        this.IDDivisi = IDDivisi;
-        this.IDGolongan = IDGolongan;
-        this.IDShift = IDShift;
-        this.no_rekening = no_rekening;
-        this.status = status;
-        this.jenis_karyawan = jenis_karyawan;
-    }
+    private String IDKaryawan;
+    private String nama;
+    private String email;
+    private String tanggal_lahir;
+    private String tanggal_masuk;
+    private String IDJabatan;
+    private String IDDivisi;
+    private String IDGolongan;
+    private String IDShift;
+    private String no_rekening;
+    private String status;
+    private String jenis_karyawan;
+    private String password;
 
     public String getIDKaryawan() {
         return IDKaryawan;
@@ -149,20 +97,20 @@ public class CRUDKaryawan implements Initializable {
         this.email = email;
     }
 
-    public String getTanggal_lahir() {
+    public String getTanggalLahir() {
         return tanggal_lahir;
     }
 
-    public void setTanggal_lahir(String tanggal_lahir) {
-        this.tanggal_lahir = tanggal_lahir;
+    public void setTanggalLahir(String tanggalLahir) {
+        this.tanggal_lahir = tanggalLahir;
     }
 
-    public String getTanggal_masuk() {
+    public String getTanggalMasuk() {
         return tanggal_masuk;
     }
 
-    public void setTanggal_masuk(String tanggal_masuk) {
-        this.tanggal_masuk = tanggal_masuk;
+    public void setTanggalMasuk(String tanggalMasuk) {
+        this.tanggal_masuk = tanggalMasuk;
     }
 
     public String getIDJabatan() {
@@ -197,12 +145,12 @@ public class CRUDKaryawan implements Initializable {
         this.IDShift = IDShift;
     }
 
-    public String getNo_rekening() {
+    public String getNoRekening() {
         return no_rekening;
     }
 
-    public void setNo_rekening(String no_rekening) {
-        this.no_rekening = no_rekening;
+    public void setNoRekening(String noRekening) {
+        this.no_rekening = noRekening;
     }
 
     public String getStatus() {
@@ -213,250 +161,474 @@ public class CRUDKaryawan implements Initializable {
         this.status = status;
     }
 
-    public String getJenis_karyawan() {
+    public String getJenisKaryawan() {
         return jenis_karyawan;
     }
 
-    public void setJenis_karyawan(String jenis_karyawan) {
-        this.jenis_karyawan = jenis_karyawan;
+    public void setJenisKaryawan(String jenisKaryawan) {
+        this.jenis_karyawan = jenisKaryawan;
     }
 
-    private String generateID() throws SQLException {
-        String prefix = "KRY";
-        String query = "SELECT COUNT(*) FROM karyawan";
-        int count = 0;
+    public String getPassword() {
+        return password;
+    }
 
-        connect.pstat = connect.conn.prepareStatement(query);
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
+    public CRUDKaryawan() {
+
+    }
+
+    public CRUDKaryawan(String IDKaryawan, String nama, String email, String tanggal_lahir, String tanggal_masuk,
+                        String IDJabatan, String IDDivisi, String IDGolongan, String IDShift, String no_rekening,
+                        String status, String jenis_karyawan, String password) {
+        this.IDKaryawan = IDKaryawan;
+        this.nama = nama;
+        this.email = email;
+        this.tanggal_lahir = tanggal_lahir;
+        this.tanggal_masuk = tanggal_masuk;
+        this.IDJabatan = IDJabatan;
+        this.IDDivisi = IDDivisi;
+        this.IDGolongan = IDGolongan;
+        this.IDShift = IDShift;
+        this.no_rekening = no_rekening;
+        this.status = status;
+        this.jenis_karyawan = jenis_karyawan;
+        this.password = password;
+    }
+
+    public class Jabatan {
+        private String id;
+        private String name;
+
+        public Jabatan(String id, String name) {
+            this.id = id;
+            this.name = name;
+        }
+
+        public String getIdJabatan() {
+            return id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        @Override
+        public String toString() {
+            return name; // This will be used by ComboBox to display the name
+        }
+    }
+
+    public class Golongan {
+        private String id;
+        private String name;
+
+        public Golongan(String id, String name) {
+            this.id = id;
+            this.name = name;
+        }
+
+        public String getIdGolongan() {
+            return id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        @Override
+        public String toString() {
+            return name; // This will be used by ComboBox to display the name
+        }
+    }
+
+    public class Divisi {
+        private String id;
+        private String name;
+
+        public Divisi(String id, String name) {
+            this.id = id;
+            this.name = name;
+        }
+
+        public String getIdDivisi() {
+            return id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        @Override
+        public String toString() {
+            return name; // This will be used by ComboBox to display the name
+        }
+    }
+
+    public class Shift {
+        private String id;
+        private String name;
+
+        public Shift(String id, String name) {
+            this.id = id;
+            this.name = name;
+        }
+
+        public String getIdShift() {
+            return id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        @Override
+        public String toString() {
+            return name; // This will be used by ComboBox to display the name
+        }
+    }
+
+    public String displayJabatanById(String idJabatan) {
+        String namaJabatan = "";
         try {
+            String query = "SELECT nama FROM Jabatan WHERE IDJabatan = ?";
+            connect.pstat = connect.conn.prepareStatement(query);
+            connect.pstat.setString(1, idJabatan);
             connect.result = connect.pstat.executeQuery();
 
             if (connect.result.next()) {
-                count = connect.result.getInt(1);
+                namaJabatan = connect.result.getString("nama");
             }
+        } catch (Exception e) {
+            System.out.println("Terjadi error saat mengambil nama jabatan: " + e);
+        }
+        return namaJabatan;
+    }
 
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+
+
+    public String displayDivisiById(String id) throws SQLException {
+        String namaDivisi = null;
+        String query = "SELECT nama FROM Divisi WHERE IDDivisi";
+
+        connect.pstat = connect.conn.prepareStatement(query);
+        try {
+            connect.pstat.setString(1, id);
+            connect.result = connect.pstat.executeQuery();
+
+            if (connect.result.next()) {
+                namaDivisi = connect.result.getString("nama");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error retrieving Divisi: " + e.getMessage());
         }
 
-        count++; // Increment count by 1 to get the new ID
-        String newID = prefix + String.format("%03d", count);
-        return newID;
+        return namaDivisi;
+    }
+
+    public String displayGolonganById(String id) throws SQLException {
+        String namaGolongan = null;
+        String query = "SELECT nama FROM Golongan WHERE IDGolongan = ?";
+
+        connect.pstat = connect.conn.prepareStatement(query);
+        try {
+            connect.pstat.setString(1, id);
+            connect.result = connect.pstat.executeQuery();
+
+            if (connect.result.next()) {
+                namaGolongan = connect.result.getString("nama");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error retrieving Divsi: " + e.getMessage());
+        }
+
+        return namaGolongan;
+    }
+
+    public String displayShiftById(String id) throws SQLException {
+        String jenisShift = null;
+        String query = "SELECT jenis_shift FROM Shift WHERE IDShift = ?";
+
+        connect.pstat = connect.conn.prepareStatement(query);
+        try {
+            connect.pstat.setString(1, id);
+            connect.result = connect.pstat.executeQuery();
+
+            if (connect.result.next()) {
+                jenisShift = connect.result.getString("jenis_shift");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error retrieving Shift: " + e.getMessage());
+        }
+
+        return jenisShift;
+    }
+
+    public void refreshDataSet() {
+        ArrayList<CRUDKaryawan> tempList = new ArrayList<>();
+        try {
+            connect.stat = connect.conn.createStatement();
+            String query = "SELECT * FROM karyawan";
+            connect.result = connect.stat.executeQuery(query);
+
+            while (connect.result.next()) {
+                oblist.add(new CRUDKaryawan(
+                        connect.result.getString("IDKaryawan"),
+                        connect.result.getString("nama"),
+                        connect.result.getString("email"),
+                        connect.result.getString("tanggal_lahir"),
+                        connect.result.getString("tanggal_masuk"),
+                        connect.result.getString("IDJabatan"),
+                        connect.result.getString("IDDivisi"),
+                        connect.result.getString("IDGolongan"),
+                        connect.result.getString("IDShift"),
+                        connect.result.getString("no_rekening"),
+                        connect.result.getString("status"),
+                        connect.result.getString("jenis_karyawan"),
+                        connect.result.getString("password")));
+            }
+
+            for (CRUDKaryawan karyawan : tempList) {
+                String idJabatan = karyawan.getIDJabatan();
+                String namaJabatan = "";
+
+                if (namaJabatan == null) {
+                    namaJabatan = displayJabatanById(idJabatan);
+                }
+
+                oblist.add(karyawan);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error When Load Data: " + e.getMessage());
+        }
+
+        // Set cell value factories after populating oblist
+        columnNama.setCellValueFactory(new PropertyValueFactory<>("nama"));
+        columnEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        columnPass.setCellValueFactory(new PropertyValueFactory<>("password"));
+        columnTglLahir.setCellValueFactory(new PropertyValueFactory<>("tanggalLahir"));
+        columnTglMasuk.setCellValueFactory(new PropertyValueFactory<>("tanggalMasuk"));
+        columnJabatan.setCellValueFactory(new PropertyValueFactory<>("IDJabatan"));
+        columnDivisi.setCellValueFactory(new PropertyValueFactory<>("IDDivisi"));
+        columnGolongan.setCellValueFactory(new PropertyValueFactory<>("IDGolongan"));
+        columnShift.setCellValueFactory(new PropertyValueFactory<>("IDShift"));
+        columnNoRekening.setCellValueFactory(new PropertyValueFactory<>("noRekening"));
+        columnJnsKaryawan.setCellValueFactory(new PropertyValueFactory<>("jenisKaryawan"));
+
+        viewKaryawan.setItems(oblist);
+    }
+
+    public void Clear() {
+        tbId.setText("");
+        tbNama.setText("");
+        tbEmail.setText("");
+        tbPassword.setText("");
+        tbTanggalLahir.setValue(null);
+        tbTanggalMasuk.setValue(null);
+        tbNoRekening.setText("");
+        cbDivisi.setValue(null);
+        cbJabatan.setValue(null);
+        cbGolongan.setValue(null);
+        cbShift.setValue(null);
+        cbJnsKaryawan.setValue(null);
+    }
+
+    public void initialize() throws SQLException {
+        refreshDataSet();
+
+        // Memanggil FK Jabatan Untuk Combo Box
+        ObservableList<Jabatan> jabatanList = FXCollections.observableArrayList();
+        connect.conn = connect.getConnection();
+        connect.stat = connect.conn.createStatement();
+        String query = "SELECT * FROM Jabatan";
+        connect.result = connect.stat.executeQuery(query);
+        while (connect.result.next()) {
+            String id = connect.result.getString("IDJabatan");
+            String nama = connect.result.getString("nama");
+            jabatanList.add(new Jabatan(id, nama));
+        }
+        cbJabatan.setItems(jabatanList);
+        connect.stat.close();
+        connect.result.close();
+        // Memanggil FK Divisi Untuk Combo Box
+        ObservableList<Divisi> divisiList = FXCollections.observableArrayList();
+        connect.conn = connect.getConnection();
+        connect.stat = connect.conn.createStatement();
+        String query2 = "SELECT * FROM Divisi";
+        connect.result = connect.stat.executeQuery(query2);
+        while (connect.result.next()) {
+            String id = connect.result.getString("IDDivisi");
+            String nama = connect.result.getString("nama");
+            divisiList.add(new Divisi(id, nama));
+        }
+        cbDivisi.setItems(divisiList);
+        connect.stat.close();
+        connect.result.close();
+        // Memanggil FK Golongan Untuk Combo Box
+        ObservableList<Golongan> golonganList = FXCollections.observableArrayList();
+        connect.conn = connect.getConnection();
+        connect.stat = connect.conn.createStatement();
+        String query3 = "SELECT * FROM Golongan";
+        connect.result = connect.stat.executeQuery(query3);
+        while (connect.result.next()) {
+            String id = connect.result.getString("IDGolongan");
+            String nama = connect.result.getString("nama");
+            golonganList.add(new Golongan(id, nama));
+        }
+        cbGolongan.setItems(golonganList);
+        connect.stat.close();
+        connect.result.close();
+        // Memanggil FK Shift Untuk Combo Box
+        ObservableList<Shift> shiftList = FXCollections.observableArrayList();
+        connect.conn = connect.getConnection();
+        connect.stat = connect.conn.createStatement();
+        String query4 = "SELECT * FROM Shift";
+        connect.result = connect.stat.executeQuery(query4);
+        while (connect.result.next()) {
+            String id = connect.result.getString("IDShift");
+            String nama = connect.result.getString("jenis_shift");
+            shiftList.add(new Shift(id, nama));
+        }
+        cbShift.setItems(shiftList);
+        connect.stat.close();
+        connect.result.close();
+
+
+        // Combo Box Jenis Karyawan
+        ObservableList<String> jenis_karyawan = FXCollections.observableArrayList();
+        jenis_karyawan.add("Tetap");
+        jenis_karyawan.add("Kontrak");
+        cbJnsKaryawan.setItems(jenis_karyawan);
     }
 
     @FXML
     private void btnCreateClick() throws SQLException {
-        btnSave.setDisable(false);
-        tbID.setDisable(false);
+        tbId.setDisable(false);
         tbNama.setDisable(false);
         tbEmail.setDisable(false);
-        tbTglLahir.setDisable(false);
-        tbTglMasuk.setDisable(false);
-        cbIdDivisi.setDisable(false);
-        cbIdGolongan.setDisable(false);
-        cbIdShift.setDisable(false);
-        cbIdJabatan.setDisable(false);
+        tbPassword.setDisable(false);
+        tbTanggalLahir.setDisable(false);
+        tbTanggalMasuk.setDisable(false);
         tbNoRekening.setDisable(false);
-        tbStatus.setDisable(false);
+        cbDivisi.setDisable(false);
+        cbJabatan.setDisable(false);
+        cbGolongan.setDisable(false);
+        cbShift.setDisable(false);
         cbJnsKaryawan.setDisable(false);
+        btnSave.setDisable(false);
         btnCancel.setDisable(false);
 
-        // Set ID Karyawan dan Status Karyawan
-        tbID.setText(generateID());
-        tbStatus.setText("Active");
+        // Mendapatkan ID Karyawan baru dari fungsi SQL Server
+        String getIdQuery = "SELECT dbo.GenerateKaryawanID() AS newID";
+        connect.pstat = connect.conn.prepareStatement(getIdQuery);
+        connect.result = connect.pstat.executeQuery();
+        if (connect.result.next()) {
+            tbId.setText(connect.result.getString("newID"));
+        }
+        connect.result.close();
+        connect.pstat.close();
 
-        // Data Combo Box
-        loadJabatanData();
-        loadDivisiData();
-        loadGolonganData();
-        loadShiftData();
+        // Menetapkan status active
+        setStatus("Active");
     }
 
     @FXML
     private void btnEditClick() {
-        btnDelete.setDisable(false);
-        btnUpdate.setDisable(false);
-        tbID.setDisable(false);
+        tbId.setDisable(false);
         tbNama.setDisable(false);
         tbEmail.setDisable(false);
-        tbTglLahir.setDisable(false);
-        tbTglMasuk.setDisable(false);
-        cbIdDivisi.setDisable(false);
-        cbIdGolongan.setDisable(false);
-        cbIdShift.setDisable(false);
-        cbIdJabatan.setDisable(false);
+        tbPassword.setDisable(false);
+        tbTanggalLahir.setDisable(false);
+        tbTanggalMasuk.setDisable(false);
         tbNoRekening.setDisable(false);
-        tbStatus.setDisable(false);
+        cbDivisi.setDisable(false);
+        cbJabatan.setDisable(false);
+        cbGolongan.setDisable(false);
+        cbShift.setDisable(false);
         cbJnsKaryawan.setDisable(false);
+        btnUpdate.setDisable(false);
+        btnDelete.setDisable(false);
         btnCancel.setDisable(false);
     }
-    
+
     @FXML
     private void btnCancelClick() {
-        tbID.setDisable(true);
+        tbId.setDisable(true);
         tbNama.setDisable(true);
         tbEmail.setDisable(true);
-        tbTglLahir.setDisable(true);
-        tbTglMasuk.setDisable(true);
-        cbIdJabatan.setDisable(true);
-        cbIdDivisi.setDisable(true);
-        cbIdGolongan.setDisable(true);
-        cbIdShift.setDisable(true);
+        tbPassword.setDisable(true);
+        tbTanggalLahir.setDisable(true);
+        tbTanggalMasuk.setDisable(true);
         tbNoRekening.setDisable(true);
-        tbStatus.setDisable(true);
+        cbDivisi.setDisable(true);
+        cbJabatan.setDisable(true);
+        cbGolongan.setDisable(true);
+        cbShift.setDisable(true);
         cbJnsKaryawan.setDisable(true);
-        btnSave.setDisable(true);
-        btnCancel.setDisable(true);
         btnUpdate.setDisable(true);
         btnDelete.setDisable(true);
-    }
-
-    @FXML
-    private void loadJabatanData() {
-        ObservableList<String> jabatanList = FXCollections.observableArrayList();
-        try {
-            connect.stat = connect.conn.createStatement();
-            String query = "SELECT IDJabatan FROM Jabatan";
-            connect.result = connect.stat.executeQuery(query);
-
-            while (connect.result.next()) {
-                jabatanList.add(connect.result.getString("IDJabatan"));
-            }
-
-            cbIdJabatan.setItems(jabatanList);
-            connect.stat.close();
-            connect.result.close();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Database Error");
-            alert.setHeaderText("Could not load jabatan data");
-            alert.setContentText("An error occurred while loading jabatan data from the database: " + e.getMessage());
-            alert.showAndWait();
-        }
-    }
-
-    @FXML
-    private void loadDivisiData() {
-        ObservableList<String> divisiList = FXCollections.observableArrayList();
-        try {
-            connect.stat = connect.conn.createStatement();
-            String query = "SELECT IDDivisi FROM Divisi";
-            connect.result = connect.stat.executeQuery(query);
-
-            while (connect.result.next()) {
-                divisiList.add(connect.result.getString("IDDivisi"));
-            }
-
-            cbIdDivisi.setItems(divisiList);
-            connect.stat.close();
-            connect.result.close();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Database Error");
-            alert.setHeaderText("Could not load divisi data");
-            alert.setContentText("An error occurred while loading divisi data from the database: " + e.getMessage());
-            alert.showAndWait();
-        }
-    }
-
-    @FXML
-    private void loadGolonganData() {
-        ObservableList<String> golonganList = FXCollections.observableArrayList();
-        try {
-            connect.stat = connect.conn.createStatement();
-            String query = "SELECT IDGolongan FROM Golongan";
-            connect.result = connect.stat.executeQuery(query);
-
-            while (connect.result.next()) {
-                golonganList.add(connect.result.getString("IDGolongan"));
-            }
-
-            cbIdGolongan.setItems(golonganList);
-            connect.stat.close();
-            connect.result.close();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Database Error");
-            alert.setHeaderText("Could not load golongan data");
-            alert.setContentText("An error occurred while loading golongan data from the database: " + e.getMessage());
-            alert.showAndWait();
-        }
-    }
-
-    @FXML
-    private void loadShiftData() {
-        ObservableList<String> shiftList = FXCollections.observableArrayList();
-        try {
-            connect.stat = connect.conn.createStatement();
-            String query = "SELECT IDShift FROM Shift";
-            connect.result = connect.stat.executeQuery(query);
-
-            while (connect.result.next()) {
-                shiftList.add(connect.result.getString("IDShift"));
-            }
-
-            cbIdShift.setItems(shiftList);
-            connect.stat.close();
-            connect.result.close();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Database Error");
-            alert.setHeaderText("Could not load shift data");
-            alert.setContentText("An error occurred while loading shift data from the database: " + e.getMessage());
-            alert.showAndWait();
-        }
+        btnCancel.setDisable(true);
+        btnSave.setDisable(true);
     }
 
     @FXML
     private void btnSaveClick() {
-        setIDKaryawan(tbID.getText());
-        setNama(tbNama.getText());
-        setEmail(tbEmail.getText());
-        setTanggal_lahir(tbTglLahir.getText());
-        setTanggal_masuk(tbTglMasuk.getText());
-        setIDJabatan((String) cbIdJabatan.getValue());
-        setIDDivisi((String) cbIdDivisi.getValue());
-        setIDGolongan((String) cbIdGolongan.getValue());
-        setIDShift((String) cbIdShift.getValue());
-        setNo_rekening(tbNoRekening.getText());
-        setStatus(tbStatus.getText());
-        setJenis_karyawan((String) cbJnsKaryawan.getValue());
+        Jabatan selectedJabatan = cbJabatan.getValue();
+        Divisi selectedDivisi = cbDivisi.getValue();
+        Golongan selectedGolongan = cbGolongan.getValue();
+        Shift selectedShift = cbShift.getValue();
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 
-        if (tbID.getText().isEmpty() || tbNama.getText().isEmpty() || tbEmail.getText().isEmpty() ||
-                tbTglLahir.getText().isEmpty() || tbTglMasuk.getText().isEmpty() || cbIdJabatan.getValue() == null ||
-                cbIdDivisi.getValue() == null || cbIdGolongan.getValue() == null || cbIdShift.getValue() == null ||
-                tbNoRekening.getText().isEmpty() || tbStatus.getText().isEmpty() || cbJnsKaryawan.getValue() == null) {
+        if (tbId.getText().isEmpty() || tbNama.getText().isEmpty() || tbEmail.getText().isEmpty() ||
+                tbTanggalLahir.getValue() == null || tbTanggalMasuk.getValue() == null || cbJabatan.getValue() == null ||
+                cbDivisi.getValue() == null || cbGolongan.getValue() == null || cbShift.getValue() == null ||
+                tbNoRekening.getText().isEmpty() || cbJnsKaryawan.getValue() == null) {
 
             alert.setAlertType(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setContentText("All fields must be filled");
             alert.showAndWait();
         } else {
+            setIDKaryawan(tbId.getText());
+            setNama(tbNama.getText());
+            setEmail(tbEmail.getText());
+            setPassword(tbPassword.getText());
+
+            LocalDate tanggalLahir = tbTanggalLahir.getValue().plusDays(2);
+            LocalDate tanggalMasuk = tbTanggalMasuk.getValue().plusDays(2);
+
+            // Set nilai ke setter
+            setTanggalLahir(tanggalLahir.toString()); // Ubah ke string jika setter membutuhkan String
+            setTanggalMasuk(tanggalMasuk.toString());
+
+            setIDJabatan(selectedJabatan.getIdJabatan()); // Use getValue() to get selected item
+            setIDDivisi(selectedDivisi.getIdDivisi());
+            setIDGolongan(selectedGolongan.getIdGolongan());
+            setIDShift(selectedShift.getIdShift());
+            setNoRekening(tbNoRekening.getText());
+            setStatus("Active");
+            setJenisKaryawan((String) cbJnsKaryawan.getValue());
+
             try {
-                String sql = "{CALL sp_InsertKaryawan(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
+                String sql = "{CALL sp_InsertKaryawan(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
                 connect.pstat = connect.conn.prepareStatement(sql);
                 connect.pstat.setString(1, getIDKaryawan());
                 connect.pstat.setString(2, getNama());
                 connect.pstat.setString(3, getEmail());
-                connect.pstat.setString(4, getTanggal_lahir());
-                connect.pstat.setString(5, getTanggal_masuk());
+                connect.pstat.setString(4, getTanggalLahir());
+                connect.pstat.setString(5, getTanggalMasuk());
                 connect.pstat.setString(6, getIDJabatan());
                 connect.pstat.setString(7, getIDDivisi());
                 connect.pstat.setString(8, getIDGolongan());
                 connect.pstat.setString(9, getIDShift());
-                connect.pstat.setString(10, getNo_rekening());
+                connect.pstat.setString(10, getNoRekening());
                 connect.pstat.setString(11, getStatus());
-                connect.pstat.setString(12, getJenis_karyawan());
+                connect.pstat.setString(12, getJenisKaryawan());
+                connect.pstat.setString(13, getPassword());
                 connect.pstat.executeUpdate();
                 connect.pstat.close();
 
@@ -466,20 +638,20 @@ public class CRUDKaryawan implements Initializable {
                 alert.show();
 
                 // Disable form inputs after saving
-                tbID.setDisable(true);
+                tbId.setDisable(true);
                 tbNama.setDisable(true);
                 tbEmail.setDisable(true);
-                tbTglLahir.setDisable(true);
-                tbTglMasuk.setDisable(true);
-                cbIdJabatan.setDisable(true);
-                cbIdDivisi.setDisable(true);
-                cbIdGolongan.setDisable(true);
-                cbIdShift.setDisable(true);
+                tbTanggalLahir.setDisable(true);
+                tbTanggalMasuk.setDisable(true);
+                cbJabatan.setDisable(true);
+                cbDivisi.setDisable(true);
+                cbGolongan.setDisable(true);
+                cbShift.setDisable(true);
                 tbNoRekening.setDisable(true);
-                tbStatus.setDisable(true);
                 cbJnsKaryawan.setDisable(true);
                 btnSave.setDisable(true);
                 btnCancel.setDisable(true);
+                Clear();
 
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -487,161 +659,244 @@ public class CRUDKaryawan implements Initializable {
                 alert.setContentText("Error : " + ex);
                 alert.show();
             }
+            viewKaryawan.getItems().clear();
+            refreshDataSet();
         }
     }
 
+    // Method untuk menemukan objek berdasarkan ID
+    private Jabatan findJabatanById(String id) {
+        for (Jabatan jabatan : cbJabatan.getItems()) {
+            if (jabatan.getIdJabatan().equals(id)) {
+                return jabatan;
+            }
+        }
+        return null; // atau lempar exception jika tidak ditemukan
+    }
+
+    private Divisi findDivisiById(String id) {
+        for (Divisi divisi : cbDivisi.getItems()) {
+            if (divisi.getIdDivisi().equals(id)) {
+                return divisi;
+            }
+        }
+        return null; // atau lempar exception jika tidak ditemukan
+    }
+
+    private Golongan findGolonganById(String id) {
+        for (Golongan golongan : cbGolongan.getItems()) {
+            if (golongan.getIdGolongan().equals(id)) {
+                return golongan;
+            }
+        }
+        return null; // atau lempar exception jika tidak ditemukan
+    }
+
+    private Shift findShiftById(String id) {
+        for (Shift shift : cbShift.getItems()) {
+            if (shift.getIdShift().equals(id)) {
+                return shift;
+            }
+        }
+        return null; // atau lempar exception jika tidak ditemukan
+    }
+
     @FXML
-    private void rowTableClick(MouseEvent event) {
+    private void handleTableDoubleClick(MouseEvent event) {
         if (event.getClickCount() == 2) {
             CRUDKaryawan selectedKaryawan = viewKaryawan.getSelectionModel().getSelectedItem();
             if (selectedKaryawan != null) {
-                tbID.setText(selectedKaryawan.getIDKaryawan());
+                tbId.setText(selectedKaryawan.getIDKaryawan());
                 tbNama.setText(selectedKaryawan.getNama());
                 tbEmail.setText(selectedKaryawan.getEmail());
-                tbTglLahir.setText(selectedKaryawan.getTanggal_lahir());
-                tbTglMasuk.setText(selectedKaryawan.getTanggal_masuk());
-                cbIdJabatan.setValue(selectedKaryawan.getIDJabatan());
-                cbIdDivisi.setValue(selectedKaryawan.getIDDivisi());
-                cbIdGolongan.setValue(selectedKaryawan.getIDGolongan());
-                cbIdShift.setValue(selectedKaryawan.getIDShift());
-                tbNoRekening.setText(selectedKaryawan.getNo_rekening());
-                tbStatus.setText(selectedKaryawan.getStatus());
-                cbJnsKaryawan.setValue(selectedKaryawan.getJenis_karyawan());
+                tbTanggalLahir.setValue(LocalDate.parse(selectedKaryawan.getTanggalLahir()));
+                tbTanggalMasuk.setValue(LocalDate.parse(selectedKaryawan.getTanggalMasuk()));
+                tbPassword.setText(selectedKaryawan.getPassword());
+                tbNoRekening.setText(selectedKaryawan.getNoRekening());
+                // Menemukan objek yang sesuai berdasarkan ID
+                Jabatan jabatan = findJabatanById(selectedKaryawan.getIDJabatan());
+                Divisi divisi = findDivisiById(selectedKaryawan.getIDDivisi());
+                Golongan golongan = findGolonganById(selectedKaryawan.getIDGolongan());
+                Shift shift = findShiftById(selectedKaryawan.getIDShift());
+                // Menetapkan nilai yang ditemukan ke ComboBox
+                cbJabatan.setValue(jabatan);
+                cbDivisi.setValue(divisi);
+                cbGolongan.setValue(golongan);
+                cbShift.setValue(shift);
+                cbJnsKaryawan.setValue(selectedKaryawan.getJenisKaryawan());
             }
         }
     }
 
     @FXML
     private void btnDeleteClick() {
-        setIDKaryawan(tbID.getText());
+        setIDKaryawan(tbId.getText());
         try {
-            String query =  "{CALL sp_DeleteKaryawan(?)}";
-            connect.pstat = connect.conn.prepareStatement(query);
-            connect.pstat.setString(1,getIDKaryawan());
-            connect.pstat.executeUpdate();
-            connect.pstat.close();
-        } catch (Exception ex) {
-            System.out.println("Error When DeletingData : " + ex);
-        }
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setContentText("Delete Data Succesfully");
-        alert.show();
-        // Disable form inputs after saving
-        tbID.setDisable(true);
-        tbNama.setDisable(true);
-        tbEmail.setDisable(true);
-        tbTglLahir.setDisable(true);
-        tbTglMasuk.setDisable(true);
-        cbIdJabatan.setDisable(true);
-        cbIdDivisi.setDisable(true);
-        cbIdGolongan.setDisable(true);
-        cbIdShift.setDisable(true);
-        tbNoRekening.setDisable(true);
-        tbStatus.setDisable(true);
-        cbJnsKaryawan.setDisable(true);
-        btnSave.setDisable(true);
-        btnCancel.setDisable(true);
-    }
-
-    @FXML
-    private void btnUpdateClick() {
-        setIDKaryawan(tbID.getText());
-        setNama(tbNama.getText());
-        setEmail(tbEmail.getText());
-        setTanggal_lahir(tbTglLahir.getText());
-        setTanggal_masuk(tbTglMasuk.getText());
-        setIDJabatan((String) cbIdJabatan.getValue());
-        setIDDivisi((String) cbIdDivisi.getValue());
-        setIDGolongan((String) cbIdGolongan.getValue());
-        setIDShift((String) cbIdShift.getValue());
-        setNo_rekening(tbNoRekening.getText());
-        setStatus(tbStatus.getText());
-        setJenis_karyawan((String) cbJnsKaryawan.getValue());
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-
-        try {
-            String sql = "{CALL sp_UpdateKaryawan(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
+            String sql = "{CALL sp_DeleteKaryawan(?)}";
             connect.pstat = connect.conn.prepareStatement(sql);
-            connect.pstat.setString(1, getIDKaryawan());
-            connect.pstat.setString(2, getNama());
-            connect.pstat.setString(3, getEmail());
-            connect.pstat.setString(4, getTanggal_lahir());
-            connect.pstat.setString(5, getTanggal_masuk());
-            connect.pstat.setString(6, getIDJabatan());
-            connect.pstat.setString(7, getIDDivisi());
-            connect.pstat.setString(8, getIDGolongan());
-            connect.pstat.setString(9, getIDShift());
-            connect.pstat.setString(10, getNo_rekening());
-            connect.pstat.setString(11, getStatus());
-            connect.pstat.setString(12, getJenis_karyawan());
+            connect.pstat.setString(1,getIDKaryawan());
 
             int rowsUpdated = connect.pstat.executeUpdate();
 
             if (rowsUpdated > 0) {
-                alert.setContentText("Update Data Succesfully");
-                alert.show();
-                // Disable form inputs after saving
-                tbID.setDisable(true);
-                tbNama.setDisable(true);
-                tbEmail.setDisable(true);
-                tbTglLahir.setDisable(true);
-                tbTglMasuk.setDisable(true);
-                cbIdJabatan.setDisable(true);
-                cbIdDivisi.setDisable(true);
-                cbIdGolongan.setDisable(true);
-                cbIdShift.setDisable(true);
-                tbNoRekening.setDisable(true);
-                tbStatus.setDisable(true);
-                cbJnsKaryawan.setDisable(true);
-                btnSave.setDisable(true);
-                btnCancel.setDisable(true);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information");
+                alert.setContentText("Delete Data Successfully");
+                alert.showAndWait();
             } else {
-                alert.setContentText("Data Undefined");
-                alert.show();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("Failed to delete data");
+                alert.showAndWait();
             }
 
             connect.pstat.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
-            alert.setContentText("Error When Load Data : " +ex);
-            alert.show();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("SQL Error: " + ex.getMessage());
+            alert.showAndWait();
         }
     }
 
-/*    @FXML
+    @FXML
     private void btnSearchClick() {
-        ObservableList<CRUDTunjangan> oblist = FXCollections.observableArrayList();
-        String searchQuery = tbCari.getText();
-
+        oblist.clear();
         try {
-            connect.stat = connect.conn.createStatement();
             String sql = "{CALL sp_findAllKaryawan(?)}";
-            CallableStatement cstmt = connect.conn.prepareCall(sql);
-            cstmt.setString(1, searchQuery.isEmpty() ? null : searchQuery);
-            connect.result = cstmt.executeQuery();
+            connect.pstat = connect.conn.prepareStatement(sql);
+            connect.pstat.setString(1, tbSearch.getText());
+            connect.result = connect.pstat.executeQuery();
 
             while (connect.result.next()) {
-                oblist.add(new CRUDTunjangan(
-                        connect.result.getString("IDTunjangan"),
-                        connect.result.getString("nama"),
-                        connect.result.getString("status")));
-            }
-            connect.result.close();
-            cstmt.close();
+                String idKaryawan = connect.result.getString("IDKaryawan");
+                String nama = connect.result.getString("nama");
+                String email = connect.result.getString("email");
+                String tanggal_lahir = connect.result.getString("tanggal_lahir");
+                String tanggal_masuk = connect.result.getString("tanggal_masuk");
+                String idJabatan = connect.result.getString("IDJabatan");
+                String idDivisi = connect.result.getString("IDDivisi");
+                String idGolongan = connect.result.getString("IDGolongan");
+                String idShift = connect.result.getString("IDShift");
+                String no_rekening = connect.result.getString("no_rekening");
+                String status = connect.result.getString("status");
+                String jenis_karyawan = connect.result.getString("jenis_karyawan");
+                String password = connect.result.getString("password");
 
-        } catch (Exception exception) {
+                CRUDKaryawan karyawan = new CRUDKaryawan(idKaryawan, nama, email, tanggal_lahir, tanggal_masuk,
+                        idJabatan, idDivisi, idGolongan, idShift, no_rekening,
+                        status, jenis_karyawan, password);
+                oblist.add(karyawan);
+            }
+
+            connect.result.close();
+            connect.pstat.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
-            alert.setHeaderText("Error executing search");
-            alert.setContentText("There was an error while executing the search: " + exception.getMessage());
+            alert.setContentText("SQL Error: " + ex.getMessage());
             alert.showAndWait();
         }
+    }
 
-        cIDTunjangan.setCellValueFactory(new PropertyValueFactory<>("IDTunjangan"));
-        cNamaTunjangan.setCellValueFactory(new PropertyValueFactory<>("nama"));
-        cStatusTunjangan.setCellValueFactory(new PropertyValueFactory<>("status"));
+    @FXML
+    private void btnUpdateClick() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 
-        viewTunjangan.setItems(oblist);
-    }*/
+        if (tbId.getText().isEmpty() || tbNama.getText().isEmpty() || tbEmail.getText().isEmpty() ||
+                tbTanggalLahir.getValue() == null || tbTanggalMasuk.getValue() == null || cbJabatan.getValue() == null ||
+                cbDivisi.getValue() == null || cbGolongan.getValue() == null || cbShift.getValue() == null ||
+                tbNoRekening.getText().isEmpty() || cbJnsKaryawan.getValue() == null) {
+
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("All fields must be filled");
+            alert.showAndWait();
+        } else {
+            try {
+                // Ambil nilai dari form
+                setIDKaryawan(tbId.getText());
+                setNama(tbNama.getText());
+                setEmail(tbEmail.getText());
+                setPassword(tbPassword.getText());
+
+                // Ambil tanggal dari DatePicker
+                LocalDate tanggalLahir = tbTanggalLahir.getValue().plusDays(2);
+                LocalDate tanggalMasuk = tbTanggalMasuk.getValue().plusDays(2);
+
+                // Set nilai ke setter
+                setTanggalLahir(tanggalLahir.toString()); // Ubah ke string jika setter membutuhkan String
+                setTanggalMasuk(tanggalMasuk.toString());
+
+                // Ambil jabatan, divisi, golongan, shift dari combo box
+                Jabatan selectedJabatan = cbJabatan.getValue();
+                Divisi selectedDivisi = cbDivisi.getValue();
+                Golongan selectedGolongan = cbGolongan.getValue();
+                Shift selectedShift = cbShift.getValue();
+
+                // Set nilai ke setter
+                setIDJabatan(selectedJabatan.getIdJabatan()); // Pastikan getIdJabatan() mengembalikan String ID
+                setIDDivisi(selectedDivisi.getIdDivisi());
+                setIDGolongan(selectedGolongan.getIdGolongan());
+                setIDShift(selectedShift.getIdShift());
+                setNoRekening(tbNoRekening.getText());
+                setStatus("Active");
+                setJenisKaryawan((String) cbJnsKaryawan.getValue());
+
+                // Panggil stored procedure
+                String sql = "{CALL sp_UpdateKaryawan(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
+                connect.pstat = connect.conn.prepareStatement(sql);
+                connect.pstat.setString(1, getIDKaryawan());
+                connect.pstat.setString(2, getNama());
+                connect.pstat.setString(3, getEmail());
+                connect.pstat.setString(4, getTanggalLahir()); // Gunakan setDate() untuk java.sql.Date
+                connect.pstat.setString(5, getTanggalMasuk());
+                connect.pstat.setString(6, getIDJabatan());
+                connect.pstat.setString(7, getIDDivisi());
+                connect.pstat.setString(8, getIDGolongan());
+                connect.pstat.setString(9, getIDShift());
+                connect.pstat.setString(10, getNoRekening());
+                connect.pstat.setString(11, getStatus());
+                connect.pstat.setString(12, getJenisKaryawan());
+                connect.pstat.setString(13, getPassword());
+                connect.pstat.executeUpdate();
+                connect.pstat.close();
+
+                // Tampilkan pesan sukses
+                alert.setAlertType(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information");
+                alert.setContentText("Save Data Successfully");
+                alert.show();
+
+                // Nonaktifkan input setelah menyimpan
+                tbId.setDisable(true);
+                tbNama.setDisable(true);
+                tbEmail.setDisable(true);
+                tbTanggalLahir.setDisable(true);
+                tbTanggalMasuk.setDisable(true);
+                cbJabatan.setDisable(true);
+                cbDivisi.setDisable(true);
+                cbGolongan.setDisable(true);
+                cbShift.setDisable(true);
+                tbNoRekening.setDisable(true);
+                cbJnsKaryawan.setDisable(true);
+                btnUpdate.setDisable(true);
+                btnDelete.setDisable(true);
+                btnCancel.setDisable(true);
+                // Clear form
+                Clear();
+                viewKaryawan.getItems().clear();
+                // Refresh tampilan data setelah update
+                refreshDataSet();
+
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                alert.setAlertType(Alert.AlertType.ERROR);
+                alert.setContentText("Error : " + ex.getMessage());
+                alert.show();
+            }
+        }
+    }
 }

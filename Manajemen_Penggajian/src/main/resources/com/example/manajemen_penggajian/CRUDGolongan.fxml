@@ -9,8 +9,10 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+
 <!--
 <CRUD Golongan/>-->
+
 <AnchorPane prefHeight="732.0" prefWidth="1156.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.manajemen_penggajian.CRUDGolongan">
    <children>
       <Pane layoutX="245.0" layoutY="33.0" prefHeight="100.0" prefWidth="1156.0" style="-fx-background-color: #B0DFFF;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -22,7 +24,7 @@
             </Text>
          </children>
       </Pane>
-      <TableView fx:id="dgvGolongan" layoutX="37.0" layoutY="155.0" onMouseClicked="#ClickdgvGolongan" prefHeight="346.0" prefWidth="1082.0">
+      <TableView fx:id="dgvGolongan" layoutX="37.0" layoutY="155.0" onMouseClicked="#ClickdgvGolongan" prefHeight="307.0" prefWidth="1082.0">
          <columns>
             <TableColumn fx:id="Nama" prefWidth="132.0" text="Group Name" />
             <TableColumn fx:id="Gaji" prefWidth="171.0" text="Wages" />
@@ -39,24 +41,24 @@
             <Font name="Segoe UI" size="15.0" />
          </font>
       </Text>
-      <Button fx:id="btnCreate" layoutX="37.0" layoutY="514.0" mnemonicParsing="false" onAction="#btnCreateClick" stylesheets="@Button.css" text="Create" />
+      <Button fx:id="btnCreate" layoutX="37.0" layoutY="486.0" mnemonicParsing="false" onAction="#btnCreateClick" stylesheets="@Button.css" text="Create" />
       <Button fx:id="btnRefresh" layoutX="1043.0" layoutY="513.0" mnemonicParsing="false" onAction="#btnRefreshClick" prefHeight="25.0" prefWidth="76.0" stylesheets="@Button.css" text="Refresh" />
       <Button fx:id="btnUpdate" layoutX="1043.0" layoutY="591.0" mnemonicParsing="false" onAction="#btnUpdateClick" prefHeight="25.0" prefWidth="76.0" stylesheets="@Button.css" text="Update" />
       <Button fx:id="btnDelete" layoutX="1043.0" layoutY="628.0" mnemonicParsing="false" onAction="#btnDeleteClick" stylesheets="@Button.css" text="De-Active" />
-      <Button fx:id="btnEdit" layoutX="97.0" layoutY="514.0" mnemonicParsing="false" onAction="#btnEditClick" prefHeight="25.0" prefWidth="51.0" stylesheets="@Button.css" text="Edit" />
-      <TextField fx:id="txtID" layoutX="148.0" layoutY="558.0" prefHeight="25.0" prefWidth="284.0" />
-      <TextField fx:id="txtNama" layoutX="148.0" layoutY="594.0" prefHeight="25.0" prefWidth="284.0" />
-      <TextField fx:id="txtGaji" layoutX="148.0" layoutY="633.0" prefHeight="25.0" prefWidth="284.0" />
-      <Label layoutX="37.0" layoutY="559.0" text="Group ID" />
-      <Label layoutX="37.0" layoutY="595.0" text="Group Name" />
-      <Label layoutX="37.0" layoutY="634.0" text="Wages" />
+      <Button fx:id="btnEdit" layoutX="97.0" layoutY="486.0" mnemonicParsing="false" onAction="#btnEditClick" prefHeight="25.0" prefWidth="51.0" stylesheets="@Button.css" text="Edit" />
+      <TextField fx:id="txtID" layoutX="148.0" layoutY="530.0" prefHeight="25.0" prefWidth="284.0" />
+      <TextField fx:id="txtNama" layoutX="148.0" layoutY="566.0" prefHeight="25.0" prefWidth="284.0" />
+      <TextField fx:id="txtGaji" layoutX="148.0" layoutY="605.0" prefHeight="25.0" prefWidth="284.0" />
+      <Label layoutX="37.0" layoutY="531.0" text="Group ID" />
+      <Label layoutX="37.0" layoutY="567.0" text="Group Name" />
+      <Label layoutX="37.0" layoutY="606.0" text="Wages" />
       <Button fx:id="btnSave" layoutX="1043.0" layoutY="551.0" mnemonicParsing="false" onAction="#btnSaveClick" prefHeight="25.0" prefWidth="76.0" stylesheets="@Button.css" text="Save" />
-      <Button fx:id="btnClear" layoutX="157.0" layoutY="514.0" mnemonicParsing="false" onAction="#btnClearClick" prefHeight="25.0" prefWidth="51.0" stylesheets="@Button.css" text="Clear" />
-      <TextField fx:id="txtMasa" layoutX="148.0" layoutY="676.0" prefHeight="25.0" prefWidth="284.0" />
-      <Label layoutX="37.0" layoutY="677.0" text="Years of Service" />
-      <TextField fx:id="txtUangmkn" layoutX="560.0" layoutY="557.0" prefHeight="25.0" prefWidth="284.0" />
-      <TextField fx:id="txtUangTransport" layoutX="560.0" layoutY="593.0" prefHeight="25.0" prefWidth="284.0" />
-      <Label layoutX="449.0" layoutY="558.0" text="Meal Allowance" />
-      <Label layoutX="449.0" layoutY="594.0" text="Transport Money" />
+      <Button fx:id="btnClear" layoutX="157.0" layoutY="486.0" mnemonicParsing="false" onAction="#btnClearClick" prefHeight="25.0" prefWidth="51.0" stylesheets="@Button.css" text="Clear" />
+      <TextField fx:id="txtMasa" layoutX="148.0" layoutY="648.0" prefHeight="25.0" prefWidth="284.0" />
+      <Label layoutX="37.0" layoutY="649.0" text="Years of Service" />
+      <TextField fx:id="txtUangmkn" layoutX="560.0" layoutY="529.0" prefHeight="25.0" prefWidth="284.0" />
+      <TextField fx:id="txtUangTransport" layoutX="560.0" layoutY="565.0" prefHeight="25.0" prefWidth="284.0" />
+      <Label layoutX="449.0" layoutY="530.0" text="Meal Allowance" />
+      <Label layoutX="449.0" layoutY="566.0" text="Transport Money" />
    </children>
 </AnchorPane>
