@@ -7,10 +7,10 @@
     <list default="true" id="bd88bd93-dbab-4d95-bd25-9ac949295c34" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/CRUDGolongan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/CRUDGolongan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/CRUDPajak.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/CRUDPajak.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/CRUDGolongan.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/CRUDGolongan.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/CRUDPajak.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/CRUDPajak.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/CRUDAsuransi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/CRUDAsuransi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/CRUDShift.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/manajemen_penggajian/CRUDShift.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/CRUDAsuransi.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/CRUDAsuransi.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/CRUDShift.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/manajemen_penggajian/CRUDShift.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,29 +37,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.DBConnect.executor&quot;: &quot;Run&quot;,
-    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_directory_selection&quot;: &quot;D:/Belajar Coding/Semester 2/Pemrograman 3/Manajemen-Penggajian-PRG3/Manajemen_Penggajian/src/main/java/com/example/manajemen_penggajian&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/LEGION/Documents/Politeknik Astra/Tingkat 1/Semester 2/Project/PRG3/Manajemen-Penggajian-PRG3/Manajemen_Penggajian/src/main/sqljdbc4.jar&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.DBConnect.executor": "Run",
+    "Application.HelloApplication.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_directory_selection": "D:/Belajar Coding/Semester 2/Pemrograman 3/Manajemen-Penggajian-PRG3/Manajemen_Penggajian/src/main/java/com/example/manajemen_penggajian",
+    "last_opened_file_path": "D:/PRG 3_SEM-2/Manajemen-Penggajian-PRG3/Manajemen-Penggajian-PRG3/Manajemen_Penggajian/src/main/sqljdbc4.jar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\PRG 3_SEM-2\Manajemen-Penggajian-PRG3\Manajemen-Penggajian-PRG3\Manajemen_Penggajian\src\main\resources\image" />
       <recent name="C:\Users\LEGION\Documents\Politeknik Astra\Tingkat 1\Semester 2\Project\PRG3\Manajemen-Penggajian-PRG3\Manajemen_Penggajian\src\main\resources\com\example\manajemen_penggajian" />
     </key>
   </component>
@@ -119,6 +120,7 @@
       <workItem from="1719146299038" duration="3000" />
       <workItem from="1719146775571" duration="67000" />
       <workItem from="1719556283462" duration="75000" />
+      <workItem from="1719556633401" duration="2684000" />
     </task>
     <servers />
   </component>
